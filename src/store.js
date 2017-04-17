@@ -1,5 +1,5 @@
 import { createStore } from "redux";
 
-import intake from "./ducks/intake";
+import reducer from "./ducks/reducer";
 
-export default createStore( intake );
+export default createStore( reducer );
