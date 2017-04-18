@@ -8,6 +8,7 @@ const initialState = {
 
 export default function loginDuck( state = initialState, action ) {
 	switch ( action.type ) {
+
 		case LOGIN:
 			console.log('login Ran')
 			return Object.assign({},state, {isAuth: true})

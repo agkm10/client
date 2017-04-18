@@ -1,4 +1,6 @@
 import React from "react";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import NavBarTop from '../Nav/index'
 import { connect } from "react-redux";
 import { BrowserRouter,
           Route,
@@ -12,6 +14,8 @@ import Client from '../Client/index';
 import {login} from '../../ducks/loginDuck'
 
 
+
+
 export function App(props) {
   console.log('isAuth', props.isAuth)
 	return (
@@ -21,8 +25,13 @@ export function App(props) {
 				<Route path="/client" component={Client}/>
 			</div>
 		</BrowserRouter>
+
 	);
 }
+
+
+
+injectTapEventPlugin();
 
 
 function PrivateRoute(props) {
