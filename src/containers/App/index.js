@@ -11,6 +11,7 @@ import { BrowserRouter,
 import "./App.css";
 import Login from '../LoginPage/index';
 import Client from '../Client/index';
+import Messages from '../Messages/index';
 import {login} from '../../ducks/loginDuck'
 
 
@@ -23,6 +24,7 @@ export function App(props) {
 			<div>
 				<Route path="/" exact component={Login}/>
 				<Route path="/client" component={Client}/>
+        <Route path="/messages" component={Messages}/>
 			</div>
 		</BrowserRouter>
 

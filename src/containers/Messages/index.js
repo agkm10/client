@@ -1,37 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import NavBarTop from '../Nav/index'
 import "./Messages.css";
 
 
-export function Messages( { } ) {
-	// const products = featuredProducts.map( product => (
-	// 	<FeaturedProduct
-	// 		addToCart={ () => addToCart( product.id ) }
-	// 		description={ product.description }
-	// 		key={ product.id }
-	// 		logo={ product.logo }
-	// 		name={ product.name }
-	// 		onSale={ product.onSale }
-	// 		price={ product.price }
-	// 	/>
-	) );
+export default function Messages( { } ) {
+
 
 	return (
 		<main className="landing">
-			{/* <h1>Featured Products</h1>
-			<div className="landing__products-wrapper">
-				{ products }
-			</div>
-
-			<Link to="/shop"><h1 className="landing__full-shop-link">Take me to the full shop!</h1></Link> */}
+			<NavBarTop/>
+			<h3>Messages Component is Working</h3>
 		</main>
 	);
 }
-
-function mapStateToProps( {  } ) {
-	return {  };
-}
-
-export default connect( mapStateToProps)( Messages );

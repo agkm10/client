@@ -14,8 +14,12 @@ import "./nav.css"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {grey50} from 'material-ui/styles/colors';
+import {login} from '../../ducks/loginDuck'
+import {logout} from '../../ducks/loginDuck'
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-function handleTouchTap() {
+function navBarLogout() {
   alert('onTouchTap triggered on the title component');
 }
 
@@ -52,32 +56,34 @@ const muiTheme = getMuiTheme({
        <Badge
       badgeContent={10}
       secondary={true}
-      badgeStyle={{top: 12, right: 12}}
+      badgeStyle={{top: 12, right: 12}}>
 
-
-    >
+      <Link to="/messages">
       <IconButton tooltip="message" >
         <NotificationsIcon color={grey50}/>
       </IconButton>
+      </Link>
     </Badge>
 
+    <Link to="/" onClick={logout}>
    <IconButton tooltip="profile">
      <Profile color={grey50} />
    </IconButton>
+ </Link>
 
 
      </div>
  )
 
-const NavBarTop = () => (
+const NavBarTop = (props) => (
 <div>
   <AppBar style={{backgroundColor: '#0E4341'}}
-    title={<img
+    title={<Link to="/client"><img
 						alt="javascript logo"
 						className="nav-goldsage-logo"
 						src={ goldsageLogo }
-					/>}
-    onTitleTouchTap={handleTouchTap}
+					/></Link>}
+    // onRightIconButtonTouchTap={navBarLogout}
     // iconElementLeft={false}
     iconElementRight={links }
 
@@ -86,4 +92,8 @@ const NavBarTop = () => (
 </div>
 );
 
-export default NavBarTop;
+// export default NavBarTop;
+function mapStateToProps(state) {
+	return { isAuth: state.loginDuck.isAuth };
+}
+export default connect( mapStateToProps, {login, logout})( NavBarTop );

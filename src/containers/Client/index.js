@@ -5,7 +5,7 @@ import InputTile from '../../components/InputTile/index'
 import "./Client.scss";
 import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
-
+import NavBarTop from '../Nav/index'
 
 export function Client(props) {
 
@@ -13,9 +13,9 @@ export function Client(props) {
 		if (props.isAuth) {
 			return (
 				<div>
+
+					<NavBarTop/>
 					<h3>You are logged in</h3>
-					<button onClick={logout}><Link to="/">Logout</Link></button>
-					<h1>NavBar</h1>
 					<InputTile/>
 					<h1>Progress Bar</h1>
 				</div>);
