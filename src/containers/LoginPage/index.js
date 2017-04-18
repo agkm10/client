@@ -6,8 +6,6 @@ import "./Login.scss";
 
 
 function Login(props) {
-	console.log(props)
-	console.log(props.isAuth)
 
 	return (
 		<main className="login-landing">
