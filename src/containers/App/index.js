@@ -1,19 +1,16 @@
 import React from "react";
-// import injectTapEventPlugin from 'react-tap-event-plugin';
-
-
-// import "./App.css";
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import NavBarTop from '../Nav/index'
 
 export function App() {
 	return (
 		<div className="App">
-      <h1>App JS is working</h1>
-			{/* <Nav /> */}
+      
+			<NavBarTop />
 		</div>
 	);
 }
 
-// injectTapEventPlugin();
 
+injectTapEventPlugin();
 export default App;

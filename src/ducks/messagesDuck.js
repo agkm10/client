@@ -8,13 +8,12 @@ const initialState = {
 
 export default function intake( state = initialState, action ) {
 	switch ( action.type ) {
-		case :
 
 
 		default: return state;
 	}
 }
 
-export function ( ) {
-
-}
+// export function ( ) {
+//
+// }
