@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
-import client from './clientDuck'
-import login from './loginDuck'
-import messages from './messagesDuck'
-import app from './appDuck'
+import { combineReducers } from "redux"
+import clientDuck from './clientDuck'
+import loginDuck from './loginDuck'
+import messagesDuck from './messagesDuck'
+import appDuck from './appDuck'
 
 export default combineReducers({
-  client,
-  login,
-  messages,
-  app
+  clientDuck,
+  loginDuck,
+  messagesDuck,
+  appDuck
 })
