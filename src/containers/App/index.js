@@ -1,19 +1,37 @@
 import React from "react";
-// import injectTapEventPlugin from 'react-tap-event-plugin';
+import { connect } from "react-redux";
+import { BrowserRouter,
+          Route,
+          Link,
+          Redirect,
+          withRouter } from "react-router-dom";
+
+import "./App.css";
+import Login from '../LoginPage/index';
+import Client from '../Client/index';
+import {login} from '../../ducks/loginDuck'
 
 
-// import "./App.css";
-
-
-export function App() {
+export function App(props) {
+  console.log('isAuth', props.isAuth)
 	return (
-		<div className="App">
-      <h1>App JS is working</h1>
-			{/* <Nav /> */}
-		</div>
+		<BrowserRouter>
+			<div>
+				<Route path="/" exact component={Login}/>
+				<Route path="/client" component={Client}/>
+			</div>
+		</BrowserRouter>
 	);
 }
 
-// injectTapEventPlugin();
 
-export default App;
+function PrivateRoute(props) {
+  console.log('privateRoute', props.isAuth)
+  return <Route path="/loggedin" component={Client}/>
+}
+
+
+function mapStateToProps( state) {
+	return { isAuth: state.loginDuck.isAuth }
+}
+export default connect (mapStateToProps, {login})(App);

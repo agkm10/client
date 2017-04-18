@@ -16,10 +16,16 @@ export function InputTile( { } ) {
 	// 		onSale={ product.onSale }
 	// 		price={ product.price }
 	// 	/>
-	) );
+	// ) );
 
 	return (
-		<main className="landing">
+		<main className="input-tile-landing">
+			<h1>Component 1</h1>
+			<h1>Component 2</h1>
+			<h1>Component 3</h1>
+			<h1>Component 4</h1>
+			<h1>Component 5</h1>
+			<h1>Component 6</h1>
 			{/* <h1>Featured Products</h1>
 			<div className="landing__products-wrapper">
 				{ products }
@@ -30,8 +36,9 @@ export function InputTile( { } ) {
 	);
 }
 
-function mapStateToProps( {  } ) {
-	return {  };
-}
-
-export default connect( mapStateToProps)( InputTile );
+// function mapStateToProps( {  } ) {
+// 	return {  };
+// }
+//
+// export default connect( mapStateToProps)( InputTile );
+export default InputTile;
