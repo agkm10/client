@@ -1,19 +1,11 @@
-// import products from "../products";
-
-// const ADD_TO_CART = "ADD_TO_CART";
 
 const initialState = {
-
+check: 'true'
 };
 
-export default function intake( state = initialState, action ) {
+export default function messagesDuck( state = initialState, action ) {
 	switch ( action.type ) {
-
 
 		default: return state;
 	}
 }
-
-// export function ( ) {
-//
-// }

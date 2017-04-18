@@ -1,37 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import InputTile from '../../components/InputTile/index'
+import "./Client.scss";
+import {login} from '../../ducks/loginDuck'
+import {logout} from '../../ducks/loginDuck'
 
-import "./Client.css";
 
+export function Client(props) {
 
-export function Client( { } ) {
-	// const products = featuredProducts.map( product => (
-	// 	<FeaturedProduct
-	// 		addToCart={ () => addToCart( product.id ) }
-	// 		description={ product.description }
-	// 		key={ product.id }
-	// 		logo={ product.logo }
-	// 		name={ product.name }
-	// 		onSale={ product.onSale }
-	// 		price={ product.price }
-	// 	/>
-	) );
+	function checkAuth() {
+		if (props.isAuth) {
+			return (
+				<div>
+					<h3>You are logged in</h3>
+					<button onClick={logout}><Link to="/">Logout</Link></button>
+					<h1>NavBar</h1>
+					<InputTile/>
+					<h1>Progress Bar</h1>
+				</div>);
+		} else {
+				return <h3>You are not logged in</h3>
+		}
+	}
 
 	return (
 		<main className="landing">
-			{/* <h1>Featured Products</h1>
-			<div className="landing__products-wrapper">
-				{ products }
-			</div>
-
-			<Link to="/shop"><h1 className="landing__full-shop-link">Take me to the full shop!</h1></Link> */}
+			{checkAuth()}
 		</main>
 	);
 }
 
-function mapStateToProps( {  } ) {
-	return {  };
-}
 
-export default connect( mapStateToProps)( Client );
+function mapStateToProps(state) {
+	return { isAuth: state.loginDuck.isAuth };
+}
+export default connect( mapStateToProps, {login, logout})( Client );
