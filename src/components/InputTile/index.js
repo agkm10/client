@@ -1,44 +1,29 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-
 import "./inputTile.css";
+import TestComp1 from '../TestComp1/index'
+import TestComp2 from '../TestComp2/index'
 
+export default function InputTile() {
+	const componentTypes = [<TestComp1/>, <TestComp2/>]
+	const varComponentTypes = [{compName: "TestComp1", index: 0, statusName: "Contact Info"}]
+	const componentMap = componentTypes.filter((type, index)=>{
 
-export function InputTile( { } ) {
-	// const products = featuredProducts.map( product => (
-	// 	<FeaturedProduct
-	// 		addToCart={ () => addToCart( product.id ) }
-	// 		description={ product.description }
-	// 		key={ product.id }
-	// 		logo={ product.logo }
-	// 		name={ product.name }
-	// 		onSale={ product.onSale }
-	// 		price={ product.price }
-	// 	/>
-	// ) );
+	var check = false
+	for (var comp in varComponentTypes) {
+			if(varComponentTypes[comp].compName === type.type.name) {
+				check = true;
+			}
+	}
+
+		return (
+			check
+		)
+	})
 
 	return (
 		<main className="input-tile-landing">
-			<h1>Component 1</h1>
-			<h1>Component 2</h1>
-			<h1>Component 3</h1>
-			<h1>Component 4</h1>
-			<h1>Component 5</h1>
-			<h1>Component 6</h1>
-			{/* <h1>Featured Products</h1>
-			<div className="landing__products-wrapper">
-				{ products }
-			</div>
+			{componentMap}
 
-			<Link to="/shop"><h1 className="landing__full-shop-link">Take me to the full shop!</h1></Link> */}
 		</main>
 	);
 }
-
-// function mapStateToProps( {  } ) {
-// 	return {  };
-// }
-//
-// export default connect( mapStateToProps)( InputTile );
-export default InputTile;

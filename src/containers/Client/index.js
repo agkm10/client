@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import InputTile from '../../components/InputTile/index'
 import "./Client.scss";
 import {login} from '../../ducks/loginDuck'

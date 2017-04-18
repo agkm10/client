@@ -7,8 +7,6 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
 function Login(props) {
-	console.log(props)
-	console.log(props.isAuth)
 
 	return (
 		<main className="login-landing">
