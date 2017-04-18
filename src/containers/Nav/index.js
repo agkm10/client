@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import appIconsComponent from './appIconsComponent'
 import Badge from 'material-ui/Badge';
 import NotificationsIcon from 'material-ui/svg-icons/communication/message';
-import Profile from 'material-ui/svg-icons/action/perm-identity';
+import Profile from 'material-ui/svg-icons/action/account-circle';
 import WatsonIcon from 'material-ui/svg-icons/action/fingerprint';
 import logoiconleft from 'material-ui/svg-icons/places/hot-tub';
 import goldsageLogo from "../../assets/logoforgroupapp.svg";
@@ -66,7 +66,7 @@ const muiTheme = getMuiTheme({
     </Badge>
 
     <Link to="/" onClick={logout}>
-   <IconButton tooltip="profile">
+   <IconButton tooltip="Logout">
      <Profile color={grey50} />
    </IconButton>
  </Link>
@@ -86,6 +86,7 @@ const NavBarTop = (props) => (
     // onRightIconButtonTouchTap={navBarLogout}
     // iconElementLeft={false}
     iconElementRight={links }
+    showMenuIconButton={false}
 
   />
 
