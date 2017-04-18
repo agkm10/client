@@ -1,8 +1,21 @@
 h1 {
   color: red; }
 
-.login-landing {
-  border: 1px solid blue; }
-
 .input-tile-landing {
   border: 1px solid blue; }
+
+.login-container {
+  background-color: white;
+  width: 400px;
+  margin: auto;
+  margin-top: 90px;
+  padding: 45px; }
+
+.login-form-inputs {
+  text-align: center; }
+
+.login-landing {
+  background: url("../../assets/loginbackground.png") center center no-repeat;
+  background-size: cover;
+  background-color: #0E4341;
+  min-height: 100vh; }

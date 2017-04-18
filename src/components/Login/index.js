@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import {login} from '../../ducks/loginDuck'
 import "./Login.scss";
 
-
 function Login(props) {
 	console.log(props)
 	console.log(props.isAuth)
