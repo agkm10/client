@@ -3,17 +3,35 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {login} from '../../ducks/loginDuck'
 import "./Login.scss";
-
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 function Login(props) {
 
 	return (
 		<main className="login-landing">
-			<div onClick={() => props.login()}>
-			<Link to="/client">Login</Link>
+
+			<br/>
+			<div className="login-container">
+
+				<div className="login-form-inputs">
+					<h2>Login</h2>
+				 <TextField
+	      hintText="Email"
+	      floatingLabelText="Username"
+	    /><br />
+				<TextField
+	      hintText="Password"
+	      floatingLabelText="Password"
+	      type="password"
+	    />
+			<br/>
+			<Link to="/client">
+			<FlatButton onClick={() => props.login()} label="LOGIN" primary={true} />
+		  </Link>
 			</div>
-			<h1> LoginPage is working </h1>
-			<p> This is the login page linked from the app through BrowserRouter</p>
+			</div>
+
 
 		</main>
 	);
