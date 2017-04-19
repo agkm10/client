@@ -1,3 +1,17 @@
+$lime: #b0eb00;
+$bright-red: #b30015;
+$dark-blue: #2a00b3;
+$deep-cerulean: #0077b3;
+$bondi-blue: #00b0b3;
+$cyan: #24fbff;
+$heliotrope: #8a7dff;
+$silver-chalice: #a6a6a6;
+$scorpion: #595959;
+$tundora: #444;
+$mine-shaft: #363636;
+$cod-gray: #111;
+
+
 
 h1 {
   color: red;
@@ -7,38 +21,6 @@ h1 {
 }
 .input-tile-landing {
   border: 1px solid blue;
-}
-.status-point {
-  border-radius: 20px;
-  width: 40px;
-}
-.sPComplete {
-  background-color: green;
-}
-.sPIncomplete {
-  background-color: red;
-}
-.status-bar-left {
-  width: 80%;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-around;
-}
-.status-bar-right {
-  width: 20%;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-around;
-}
-.status-bar-landing {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-around;
-  height: 40px;
-  border: 1px solid black;
 }
 
 .login-container {

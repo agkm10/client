@@ -1,0 +1,40 @@
+@import "../../containers/App/App.scss";
+// .sPIncomplete {
+//   background-color: $lime;
+// }
+.status-bar-landing {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+}
+
+
+.status-point {
+  border-radius: 20px;
+  width: 40px;
+}
+
+.status-bar-left {
+  width: 80%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.status-bar-right {
+  width: 20%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.status-bar-landing {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  border: 1px solid black;
+}
