@@ -5,6 +5,7 @@ import "./Client.scss";
 import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
 import NavBarTop from '../Nav/index'
+import StatusBar from '../../components/StatusBar/index'
 
 export function Client(props) {
 
@@ -16,7 +17,7 @@ export function Client(props) {
 					<NavBarTop/>
 					<h3>You are logged in</h3>
 					<InputTile/>
-					<h1>Progress Bar</h1>
+					<StatusBar/>
 				</div>);
 		} else {
 				return <h3>You are not logged in</h3>
