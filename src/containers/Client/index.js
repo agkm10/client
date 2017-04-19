@@ -10,7 +10,7 @@ import StatusBar from '../../components/StatusBar/index'
 export function Client(props) {
 
 	function checkAuth() {
-		if (props.isAuth) {
+		// if (props.isAuth) {
 			return (
 				<div>
 
@@ -19,9 +19,9 @@ export function Client(props) {
 					<InputTile/>
 					<StatusBar/>
 				</div>);
-		} else {
-				return <h3>You are not logged in</h3>
-		}
+		// } else {
+		// 		return <h3>You are not logged in</h3>
+		// }
 	}
 
 	return (
