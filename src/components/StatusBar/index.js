@@ -9,8 +9,10 @@ import IconComplete from 'material-ui/svg-icons/action/assignment-turned-in';
 import IconNotComplete from 'material-ui/svg-icons/action/assignment-late';
 import {red500} from 'material-ui/styles/colors';
 import {greenA700} from 'material-ui/styles/colors';
+import LinearProgress from 'material-ui/LinearProgress';
 
 export default function StatusBar() {
+
 	const componentTypes = [<TestComp1/>, <TestComp2/>, <TestComp3/>, <TestComp4/>]
 	const varComponentTypes = [
     {compName: "TestComp1", index: 0, statusName: "Contact Info", completed: true},
@@ -60,11 +62,11 @@ export default function StatusBar() {
 		<main className="status-bar-landing">
       <div className="status-bar-left">
 				{componentMap}
-
-
       </div>
       <div className="status-bar-right">
-        {percentCompleted}% Complete
+        <div className="percenttext">{percentCompleted}% Complete</div>
+				<LinearProgress mode="determinate" value={percentCompleted} />
+
       </div>
 		</main>
 	);
