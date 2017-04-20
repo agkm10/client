@@ -1,28 +1,14 @@
 $green: #0E4341;
-$bright-red: #b30015;
-$dark-blue: #2a00b3;
-$deep-cerulean: #0077b3;
-$bondi-blue: #00b0b3;
-$cyan: #24fbff;
-$heliotrope: #8a7dff;
-$silver-chalice: #a6a6a6;
-$scorpion: #595959;
-$tundora: #444;
-$mine-shaft: #363636;
-$cod-gray: #111;
 
 
-
-h1 {
-  color: red;
-}
-.login-landing {
-  border: 1px solid blue;
-}
 .input-tile-landing {
-  border: 1px solid blue;
+  width: 80%;
+  margin: auto;
+  text-align: left;
 }
-
+.input-header-title {
+font: 40px;
+}
 .login-container {
   background-color: white;
   width: 400px;

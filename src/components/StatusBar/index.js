@@ -5,9 +5,10 @@ import TestComp3 from '../TestComp3/index'
 import TestComp4 from '../TestComp4/index'
 import "./statusbar.css"
 import IconButton from 'material-ui/IconButton';
-import IconComplete from 'material-ui/svg-icons/action/assignment-turned-in';
-import IconNotComplete from 'material-ui/svg-icons/action/assignment-late';
+import IconComplete from 'material-ui/svg-icons/navigation/check';
+import IconNotComplete from 'material-ui/svg-icons/content/clear';
 import {red500} from 'material-ui/styles/colors';
+import {grey50} from 'material-ui/styles/colors';
 import {greenA700} from 'material-ui/styles/colors';
 import LinearProgress from 'material-ui/LinearProgress';
 
@@ -43,7 +44,7 @@ export default function StatusBar() {
 			 tooltip={type.type.statusName}
 			tooltipPosition="top-center"
     	>
-    <IconComplete color={greenA700} />
+    <IconComplete color={grey50} />
     </IconButton></div>
     }else if (check){
       return <div key={type.type.key} className='status-point sPIncomplete'>
@@ -52,7 +53,7 @@ export default function StatusBar() {
 			 tooltip={type.type.statusName}
 			tooltipPosition="top-center"
     	>
-    <IconNotComplete color={red500} />
+    <IconNotComplete color={grey50} />
     </IconButton></div>
     }
 	})
