@@ -42,6 +42,7 @@ class InputTile extends Component {
     return (
       <main className="input-tile-landing">
         {componentDisplay}
+
       </main>
     );
   }

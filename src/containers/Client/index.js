@@ -6,6 +6,7 @@ import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
 import NavBarTop from '../Nav/index'
 import StatusBar from '../../components/StatusBar/index'
+import SocialInputs from '../../components/Social/index'
 
 export function Client(props) {
 
@@ -18,6 +19,7 @@ export function Client(props) {
         <h3>You are logged in</h3>
         <InputTile/>
         <StatusBar/>
+        <SocialInputs/>
       </div>
     );
     // } else {
