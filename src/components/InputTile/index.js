@@ -11,7 +11,11 @@ class InputTile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      componentTypes: [ < TestComp1 />, < TestComp2 />, < TestComp3 />, < TestComp4 />
+      componentTypes: [
+        {component: < TestComp1 />, name: 'TestComp1'},
+        {component: < TestComp2 />, name: 'TestComp2'},
+        {component: < TestComp3 />, name: 'TestComp3'},
+        {component: < TestComp4 />, name: 'TestComp4'},
       ]
     }
 
@@ -20,30 +24,24 @@ class InputTile extends Component {
     this.props.getComps()
   }
   render() {
-
     const {varComponentTypes} = this.props;
     const {componentTypes} = this.state
-
-    console.log('varComponentTypes', varComponentTypes)
     const componentMap = componentTypes.filter((type, index) => {
       var check = false
       for (var comp in varComponentTypes.data) {
-        if (varComponentTypes.data[comp].compName === type.type.name) {
+        if ((varComponentTypes.data[comp].compName === type.name)) {
           check = true;
-          type.type.key = varComponentTypes.data[comp].id
+          type.key = varComponentTypes.data[comp].id
         }
       }
       return (check)
     })
-
     const componentDisplay = componentMap.map(x => {
-      return <div key={x.type.key}>{x}</div>
+      return <div key={x.key}>{x.component}</div>
     })
-
     return (
       <main className="input-tile-landing">
         {componentDisplay}
-
       </main>
     );
   }

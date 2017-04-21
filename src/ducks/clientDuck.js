@@ -55,12 +55,9 @@ const axios = axiosLibrary.create({withCredentials: true})
   }
   //data is going to be req.body
   export function getComps() {
-
-    console.log('running getComps');
     return (dispatch) => {
       dispatch(compRequest())
       axios.get(BASE_URL + '/comps').then((response) => {
-        console.log('getComps', response)
         setComps(dispatch, response)
       }).catch(err => {
         console.log(err)
