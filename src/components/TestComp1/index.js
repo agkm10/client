@@ -2,7 +2,7 @@ import React from "react";
 import TextField from 'material-ui/TextField';
 import "./billinginfo.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, blue500} from 'material-ui/styles/colors';
+import {blue500} from 'material-ui/styles/colors';
 
 export default function TestComp1() {
 

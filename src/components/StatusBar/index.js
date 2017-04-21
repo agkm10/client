@@ -9,16 +9,18 @@ import "./statusbar.css"
 import IconButton from 'material-ui/IconButton';
 import IconComplete from 'material-ui/svg-icons/navigation/check';
 import IconNotComplete from 'material-ui/svg-icons/content/clear';
-import {red500} from 'material-ui/styles/colors';
 import {grey50} from 'material-ui/styles/colors';
-import {greenA700} from 'material-ui/styles/colors';
 import LinearProgress from 'material-ui/LinearProgress';
 
 class StatusBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      componentTypes: [ < TestComp1 />, < TestComp2 />, < TestComp3 />, < TestComp4 />
+      componentTypes: [
+        {component: < TestComp1 />, name: 'TestComp1'},
+        {component: < TestComp2 />, name: 'TestComp2'},
+        {component: < TestComp3 />, name: 'TestComp3'},
+        {component: < TestComp4 />, name: 'TestComp4'},
       ]
 
     }
@@ -35,11 +37,11 @@ class StatusBar extends Component {
       var check = false
       var check2 = false;
       for (var comp in varComponentTypes.data) {
-        if (varComponentTypes.data[comp].compName === type.type.name) {
+        if (varComponentTypes.data[comp].compName === type.name) {
           check = true;
           compCount1 += 1;
-          type.type.statusName = varComponentTypes.data[comp].statusName
-          type.type.key = varComponentTypes.data[comp].id
+          type.statusName = varComponentTypes.data[comp].statusName
+          type.key = varComponentTypes.data[comp].id
           if (varComponentTypes.data[comp].completed === true) {
             compCount += 1;
             check2 = true;
@@ -47,15 +49,15 @@ class StatusBar extends Component {
         }
       }
       if (check && check2) {
-        return <div key={type.type.key} className='status-point sPComplete'>
-          <IconButton tooltip={type.type.statusName} tooltipPosition="top-center">
-            <IconComplete color={greenA700}/>
+        return <div key={type.key} className='status-point sPComplete'>
+          <IconButton tooltip={type.statusName} tooltipPosition="top-center">
+            <IconComplete color={grey50}/>
           </IconButton>
         </div>
       } else if (check) {
-        return <div key={type.type.key} className='status-point sPIncomplete'>
-          <IconButton tooltip={type.type.statusName} tooltipPosition="top-center">
-            <IconNotComplete color={red500}/>
+        return <div key={type.key} className='status-point sPIncomplete'>
+          <IconButton tooltip={type.statusName} tooltipPosition="top-center">
+            <IconNotComplete color={grey50}/>
           </IconButton>
         </div>
       }
