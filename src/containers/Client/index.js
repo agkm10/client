@@ -12,6 +12,8 @@ import LogoUpload from '../../components/Logo/index'
 import BizInfo from '../../components/BizInfo/index'
 import BillInfo from '../../components/BillInfo/index'
 import WebPages from '../../components/WebPages/index'
+import Design from '../../components/Design/index'
+import SideStatusBar from '../../components/SideStatusBar/index'
 
 export function Client(props) {
 
@@ -28,6 +30,8 @@ export function Client(props) {
         <SocialInputs/>
         <LogoUpload/>
         <WebPages/>
+        <Design/>
+        <SideStatusBar/>
 
         <StatusBar/>
       </div>
