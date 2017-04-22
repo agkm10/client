@@ -7,7 +7,7 @@ const axios = axiosLibrary.create({withCredentials: true})
     BASE_URL = "http://localhost:3002/api";
 
   const initialState = {
-    varComponentInputs: [],
+    inputReturnValues: {},
     loadingInputs: false,
     inputsLoaded: false,
     errorLoadingInputs: false
@@ -55,8 +55,6 @@ const axios = axiosLibrary.create({withCredentials: true})
   }
   //data is going to be req.body
   export function setInputs(data) {
-
-    console.log('running setInputs');
     return (dispatch) => {
       dispatch(InputRequest())
       axios.put(BASE_URL + '/inputs',data).then((response) => {
@@ -70,8 +68,6 @@ const axios = axiosLibrary.create({withCredentials: true})
   }
 
   export function getInputs() {
-
-    console.log('running getInputs');
     return (dispatch) => {
       dispatch(InputRequest())
       axios.get(BASE_URL + '/inputs').then((response) => {
