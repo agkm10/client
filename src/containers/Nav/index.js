@@ -3,12 +3,12 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
-import appIconsComponent from './appIconsComponent'
 import Badge from 'material-ui/Badge';
 import NotificationsIcon from 'material-ui/svg-icons/communication/message';
 import Profile from 'material-ui/svg-icons/action/account-circle';
 import WatsonIcon from 'material-ui/svg-icons/action/fingerprint';
-import logoiconleft from 'material-ui/svg-icons/places/hot-tub';
+import DropArrow from 'material-ui/svg-icons/navigation/arrow-drop-down';
+
 import goldsageLogo from "../../assets/logoforgroupapp.svg";
 import "./nav.css"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
