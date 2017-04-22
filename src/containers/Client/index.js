@@ -7,6 +7,11 @@ import {logout} from '../../ducks/loginDuck'
 import NavBarTop from '../Nav/index'
 import StatusBar from '../../components/StatusBar/index'
 import SocialInputs from '../../components/Social/index'
+import TestComp1 from '../../components/TestComp1/index'
+import LogoUpload from '../../components/Logo/index'
+import BizInfo from '../../components/BizInfo/index'
+import BillInfo from '../../components/BillInfo/index'
+import WebPages from '../../components/WebPages/index'
 
 export function Client(props) {
 
@@ -16,10 +21,15 @@ export function Client(props) {
       <div>
 
         <NavBarTop/>
-        <h3>You are logged in</h3>
+
         <InputTile/>
-        <StatusBar/>
+        <BillInfo/>
+        <BizInfo/>
         <SocialInputs/>
+        <LogoUpload/>
+        <WebPages/>
+
+        <StatusBar/>
       </div>
     );
     // } else {
