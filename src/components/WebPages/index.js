@@ -61,7 +61,7 @@ width: 600,
       </div>
       <div>
         <RaisedButton
-          
+
           label="ADD NEW PAGE"
           labelPosition="before"
           icon={<AddButton />}
