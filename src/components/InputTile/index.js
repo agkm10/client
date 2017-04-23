@@ -2,10 +2,17 @@ import React, {Component} from "react";
 import "./inputTile.css";
 import {getComps} from '../../ducks/clientDuck'
 import {connect} from "react-redux";
+import NavBarTop from '../Nav/index'
+import StatusBar from '../StatusBar/index'
+import SocialInputs from '../Social/index'
 import TestComp1 from '../TestComp1/index'
 import TestComp2 from '../TestComp2/index'
-import TestComp3 from '../TestComp3/index'
-import TestComp4 from '../TestComp4/index'
+import LogoUpload from '../Logo/index'
+import BizInfo from '../BizInfo/index'
+import BillInfo from '../BillInfo/index'
+import WebPages from '../WebPages/index'
+import Design from '../Design/index'
+import SideStatusBar from '../SideStatusBar/index'
 
 class InputTile extends Component {
   constructor(props) {
@@ -14,8 +21,12 @@ class InputTile extends Component {
       componentTypes: [
         {component: < TestComp1 />, name: 'TestComp1'},
         {component: < TestComp2 />, name: 'TestComp2'},
-        {component: < TestComp3 />, name: 'TestComp3'},
-        {component: < TestComp4 />, name: 'TestComp4'},
+        {component: < SocialInputs />, name: 'SocialInputs'},
+        {component: < LogoUpload />, name: 'LogoUpload'},
+        {component: < BizInfo />, name: 'BizInfo'},
+        {component: < BillInfo />, name: 'BillInfo'},
+        {component: < WebPages />, name: 'WebPages'},
+        {component: < Design />, name: 'Design'}
       ]
     }
 
@@ -41,7 +52,9 @@ class InputTile extends Component {
     })
     return (
       <main className="input-tile-landing">
-        {componentDisplay}
+
+      {componentDisplay}
+
 
       </main>
     );

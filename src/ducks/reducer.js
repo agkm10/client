@@ -1,16 +1,20 @@
 import { combineReducers } from "redux"
+import { reducer as formReducer } from 'redux-form'
 import clientDuck from './clientDuck'
 import loginDuck from './loginDuck'
-import messagesDuck from './messagesDuck'
+import messageDuck from './messageDuck'
 import appDuck from './appDuck'
 import inputDuck from './inputDuck'
 import uploadDuck from './uploadDuck'
+import authDuck from './authDuck'
 
 export default combineReducers({
   clientDuck,
   loginDuck,
-  messagesDuck,
+  messageDuck,
   appDuck,
   inputDuck,
-  uploadDuck
+  uploadDuck,
+  authDuck,
+  form:formReducer
 })
