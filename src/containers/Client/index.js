@@ -4,7 +4,7 @@ import InputTile from '../../components/InputTile/index'
 import "./Client.scss";
 import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
-import NavBarTop from '../Nav/index'
+import NavBarTop from '../../components/Nav/index'
 import StatusBar from '../../components/StatusBar/index'
 import SocialInputs from '../../components/Social/index'
 import TestComp1 from '../../components/TestComp1/index'
@@ -25,15 +25,16 @@ export function Client(props) {
         <NavBarTop/>
 
         <InputTile/>
-        <BillInfo/>
+        {/* <BillInfo/>
         <BizInfo/>
         <SocialInputs/>
         <LogoUpload/>
         <WebPages/>
         <Design/>
-        <SideStatusBar/>
+        <SideStatusBar/> */}
 
         <StatusBar/>
+        
       </div>
     );
     // } else {
@@ -49,6 +50,6 @@ export function Client(props) {
 }
 
 function mapStateToProps(state) {
-  return {isAuth: state.loginDuck.isAuth};
+  return {isAuth: state.authDuck.isAuthenticated};
 }
 export default connect(mapStateToProps, {login, logout})(Client);

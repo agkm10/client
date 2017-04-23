@@ -1,10 +1,15 @@
 import React, {Component} from "react";
 import {getComps} from '../../ducks/clientDuck'
 import {connect} from "react-redux";
+import SocialInputs from '../Social/index'
 import TestComp1 from '../TestComp1/index'
 import TestComp2 from '../TestComp2/index'
-import TestComp3 from '../TestComp3/index'
-import TestComp4 from '../TestComp4/index'
+import LogoUpload from '../Logo/index'
+import BizInfo from '../BizInfo/index'
+import BillInfo from '../BillInfo/index'
+import WebPages from '../WebPages/index'
+import Design from '../Design/index'
+import SideStatusBar from '../SideStatusBar/index'
 import "./statusbar.css"
 import IconButton from 'material-ui/IconButton';
 import IconComplete from 'material-ui/svg-icons/navigation/check';
@@ -19,8 +24,12 @@ class StatusBar extends Component {
       componentTypes: [
         {component: < TestComp1 />, name: 'TestComp1'},
         {component: < TestComp2 />, name: 'TestComp2'},
-        {component: < TestComp3 />, name: 'TestComp3'},
-        {component: < TestComp4 />, name: 'TestComp4'},
+        {component: < SocialInputs />, name: 'SocialInputs'},
+        {component: < LogoUpload />, name: 'LogoUpload'},
+        {component: < BizInfo />, name: 'BizInfo'},
+        {component: < BillInfo />, name: 'BillInfo'},
+        {component: < WebPages />, name: 'WebPages'},
+        {component: < Design />, name: 'Design'}
       ]
 
     }
