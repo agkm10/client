@@ -1,6 +1,6 @@
 import React from "react";
-import NavBarTop from '../Nav/index'
-import "./Messages.css";
+import NavBarTop from '../../components/Nav/index'
+import "./MessagePage.css";
 export default function Messages() {
     return (
         <main className="landing">

@@ -11,9 +11,12 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import IconComplete from 'material-ui/svg-icons/navigation/check';
 import IconNotComplete from 'material-ui/svg-icons/content/clear';
+import {connect} from "react-redux";
+import {setInputs, getInputs} from '../../ducks/inputDuck'
+import {uploadFile, getFiles} from '../../ducks/uploadDuck'
 
 
-export default class SideStatusBar extends Component {
+class SideStatusBar extends Component {
   constructor(){
     super();
     this.state = {
@@ -69,3 +72,7 @@ const pstyle = {
 
   }
 }
+function mapStateToProps(state) {
+  return {inputReturnValues: state.inputDuck.inputReturnValues, dropboxFiles: state.uploadDuck.dropboxFiles};
+}
+export default connect(mapStateToProps, {setInputs, getInputs, uploadFile, getFiles})(SideStatusBar);
