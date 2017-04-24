@@ -1,20 +1,59 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import {uploadFile, getInputs, getFiles} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./Logo.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, cyan500} from 'material-ui/styles/colors';
+import {red500, yellow500, blue500, cyan500, greenA700} from 'material-ui/styles/colors';
 import UploadButton from 'material-ui/svg-icons/file/file-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
+import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 
-export default class LogoUpload extends Component {
-  constructor(){
-    super();
+
+class LogoUpload extends Component {
+  constructor(props){
+    super(props);
     this.state = {
-
+      open: false,
+      dropboxFiles: [],
     }
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({dropboxFiles: nextProps.dropboxFiles})
+  }
+  _uploadFile() {
+    this.props.uploadFile()
+  }
+  componentDidMount() {
+    this.props.getFiles()
+  }
+    handleTouchTap = () => {
+        this.setState({
+          open: true,
+        });
+      };
+      handleRequestClose = () => {
+      this.setState({
+        open: false,
+      });
+    };
+
   render(){
+  var {dropboxFiles}=this.state
+
+    const dropboxFileUploads = dropboxFiles.map(file => {
+      return (
+        <div key={file.id}>
+          {file.name}
+        </div>
+      )
+    })
+    const iconStyles = {
+    marginRight: 10,
+    fontSize: 14,
+  }
 
   const styles = {
   button: {
@@ -44,19 +83,44 @@ const pstyle = {
     <div id="fileup">
       <div className="input-header-title">Upload Your Logo</div>
       <div className="input-description">Prefer Vector but accept these files: .jpeg .pdf .ai .psd .png .svg </div>
+      <div className="input-description">
+      <FontIcon style={iconStyles} className="material-icons" color={greenA700}>cloud_done</FontIcon>
+      Files Uploaded: {dropboxFileUploads}
+      </div>
           <div className="save-button-inputs">
             <RaisedButton
-              label="FILE UPLOAD"
+              label="CHOOSE FILE"
               labelPosition="before"
               icon={<UploadButton />}
+              style={styles.button}
+              backgroundColor="#1C333D"
+              labelColor="white"
+              buttonStyle={{fontWeight: 100}}
+              containerElement="label"
+              onTouchTap={this.handleTouchTap}
+
+
+            >
+              <input id="file-upload" type="file" style={styles.exampleImageInput} />
+            </RaisedButton>
+            <RaisedButton
+              href="#fileup"
+              label="SAVE"
+              labelPosition="before"
+              icon={<SaveButton />}
               style={styles.button}
               backgroundColor="#AE863C"
               labelColor="white"
               buttonStyle={{fontWeight: 100}}
-              containerElement="label"
-            >
-              <input type="file" style={styles.exampleImageInput} />
-            </RaisedButton>
+              onClick={this._uploadFile.bind(this)}
+            ></RaisedButton>
+
+            <Snackbar
+          open={this.state.open}
+          message="Logo File Successfully Uploaded"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
           </div>
 
 
@@ -67,3 +131,7 @@ const pstyle = {
 
   }
 }
+function mapStateToProps(state) {
+  return {inputReturnValues: state.inputDuck.inputReturnValues, dropboxFiles: state.uploadDuck.dropboxFiles};
+}
+export default connect(mapStateToProps, {getInputs, uploadFile, getFiles})(LogoUpload);
