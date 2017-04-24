@@ -1,21 +1,53 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import {setInputs, getInputs} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./Design.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, cyan500, grey400} from 'material-ui/styles/colors';
+import {red500, cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
-import AddButton from 'material-ui/svg-icons/action/note-add';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
-export default class Design extends Component {
+class Design extends Component {
   constructor(){
     super();
     this.state = {
-
+      inputReturnValues: {},
+      designwho: "",
+      designaction: "",
+      designurl: "",
     }
   }
+  handleChange(field, e) {
+    this.setState({[field]: e.target.value})
+  }
+  componentDidMount() {
+    this.props.getInputs()
+    this.props.getFiles()
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({designwho: nextProps.inputReturnValues.data[0].designwho})
+    this.setState({designaction: nextProps.inputReturnValues.data[0].designaction})
+    this.setState({designurl: nextProps.inputReturnValues.data[0].designurl})
+  }
+  saveInputs(e) {
+    const inputsToServer = {
+      designwho: this.state.designwho,
+      designaction: this.state.designaction,
+      designurl: this.state.designurl,
+
+    }
+    this.props.setInputs(inputsToServer)
+    e.preventDefault()
+  }
+
   render(){
+
+    var {designwho,
+        designaction,
+        designurl,} = this.state;
+
     const iconStyles = {
     marginRight: 10,
     fontSize: 14,
@@ -46,10 +78,12 @@ width: 600,
       <div>
         <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500} >arrow_forward</FontIcon>Who is visiting your site? Be specific as to what type of person or customer is visiting your site.</p>
         <TextField
+          value={designwho}
+          onChange={this.handleChange.bind(this, 'designwho')}
           className="hovertexttest"
           inputStyle={false}
           underlineShow={false}
-          style = {inStyle}
+          style={inStyle}
           hintText=""
           multiLine={true}
           rows={3}
@@ -58,10 +92,12 @@ width: 600,
       <div>
         <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500} >arrow_forward</FontIcon>What do you want them to do when they come to your site? What ACTION? </p>
         <TextField
+          value={designaction}
+          onChange={this.handleChange.bind(this, 'designaction')}
           className="hovertexttest"
           inputStyle={false}
           underlineShow={false}
-          style = {inStyle}
+          style={inStyle}
           hintText=""
           multiLine={true}
           rows={3}
@@ -70,10 +106,12 @@ width: 600,
       <div>
         <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500} >arrow_forward</FontIcon>List of any Example Websites you like? Enter URL below.</p>
         <TextField
+          value={designurl}
+          onChange={this.handleChange.bind(this, 'designurl')}
           className="hovertexttest"
           inputStyle={false}
           underlineShow={false}
-          style = {inStyle}
+          style={inStyle}
           hintText=""
           multiLine={true}
           rows={3}
@@ -91,6 +129,7 @@ width: 600,
               backgroundColor="#AE863C"
               labelColor="white"
               buttonStyle={{fontWeight: 100}}
+              onClick={this.saveInputs.bind(this)}
             ></RaisedButton>
 
           </div>
@@ -103,3 +142,6 @@ width: 600,
 
   }
 }
+function mapStateToProps(state) {
+  return {inputReturnValues: state.inputDuck.inputReturnValues}}
+export default connect(mapStateToProps, {setInputs, getInputs})(Design);

@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import {setInputs, getInputs} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./BillInfo.css"
 import FontIcon from 'material-ui/FontIcon';
@@ -7,14 +9,60 @@ import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
-export default class BillInfo extends Component {
+class BillInfo extends Component {
   constructor(){
     super();
     this.state = {
+      inputReturnValues: {},
+      billingpoc: "",
+      billingphonenumber: "",
+      billingemail: "",
+      billingadd: "",
+      billingcity: "",
+      billingstate: "",
+      billingzip: "",
 
     }
   }
+  handleChange(field, e) {
+    this.setState({[field]: e.target.value})
+  }
+  componentDidMount() {
+    this.props.getInputs()
+    this.props.getFiles()
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({billingpoc: nextProps.inputReturnValues.data[0].billingpoc})
+    this.setState({billingphonenumber: nextProps.inputReturnValues.data[0].billingphonenumber})
+    this.setState({billingemail: nextProps.inputReturnValues.data[0].billingemail})
+    this.setState({billingadd: nextProps.inputReturnValues.data[0].billingadd})
+    this.setState({billingcity: nextProps.inputReturnValues.data[0].billingstate})
+    this.setState({billingzip: nextProps.inputReturnValues.data[0].billingzip})
+
+  }
+  saveInputs(e) {
+    const inputsToServer = {
+      billingpoc: this.state.billingpoc,
+      billingphonenumber: this.state.billingphonenumber,
+      billingemail: this.state.billingemail,
+      billingcity: this.state.billingcity,
+      billingadd: this.state.billingadd,
+      billingzip: this.state.billingzip,
+
+    }
+    this.props.setInputs(inputsToServer)
+    e.preventDefault()
+  }
   render(){
+
+    var {billingpoc,
+        billingphonenumber,
+        billingemail,
+        billingadd,
+        billingcity,
+        billingstate,
+        billingzip,} = this.state;
+
     const iconStyles = {
     marginRight: 10,
     fontSize: 14,
@@ -43,32 +91,32 @@ width: 600,
       <div className="input-description">This is for Goldsage Billing Contact Info and payment processing</div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Billing Point of Contact Name</p>
-         <TextField className="hovertexttest" inputStyle={false} underlineShow={false} style = {inStyle} hintText="" /><br/>
+         <TextField value={billingpoc} onChange={this.handleChange.bind(this, 'billingpoc')} className="hovertexttest" inputStyle={false} underlineShow={false} style = {inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Direct Phone Number</p>
-         <TextField className="hovertexttest" inputStyle={false} underlineShow={false} style = {inStyle} hintText="" /><br/>
+         <TextField value={billingphonenumber} onChange={this.handleChange.bind(this, 'billingphonenumber')} className="hovertexttest" inputStyle={false} underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Email</p>
-         <TextField className="hovertexttest" inputStyle={false} underlineShow={false} style = {inStyle} hintText="" /><br/>
+         <TextField value={billingemail} onChange={this.handleChange.bind(this, 'billingemail')}  className="hovertexttest" inputStyle={false} underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Billing Address</p>
 
-         <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style = {inStyle} hintText="" /><br/>
+         <TextField value={billingadd} onChange={this.handleChange.bind(this, 'billingadd')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
        </div>
        <div>
           <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>City</p>
-          <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style = {inStyle} hintText="" /><br/>
+          <TextField value={billingcity} onChange={this.handleChange.bind(this, 'billingcity')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
         </div>
         <div>
            <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>State</p>
-           <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style = {inStyle} hintText="" /><br/>
+           <TextField value={billingstate} onChange={this.handleChange.bind(this, 'billingstate')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
          </div>
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Zip Code</p>
-            <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style = {inStyle} hintText="" /><br/>
+            <TextField value={billingzip} onChange={this.handleChange.bind(this, 'billingzip')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
           </div>
           <div className="save-button-inputs">
 
@@ -81,6 +129,7 @@ width: 600,
               backgroundColor="#AE863C"
               labelColor="white"
               buttonStyle={{fontWeight: 100}}
+              onClick={this.saveInputs.bind(this)}
             ></RaisedButton>
 
           </div>
@@ -93,3 +142,6 @@ width: 600,
 
   }
 }
+function mapStateToProps(state) {
+  return {inputReturnValues: state.inputDuck.inputReturnValues}}
+export default connect(mapStateToProps, {setInputs, getInputs})(BillInfo);

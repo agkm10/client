@@ -27,16 +27,16 @@ export function Client(props) {
 
         <TestComp2/>
         <InputTile/>
-        {/* <BillInfo/>
+        <BillInfo/>
         <BizInfo/>
         <SocialInputs/>
         <LogoUpload/>
         <WebPages/>
         <Design/>
-        <SideStatusBar/> */}
+        {/* <SideStatusBar/> */}
 
         <StatusBar/>
-        
+
       </div>
     );
     // } else {
