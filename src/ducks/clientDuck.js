@@ -65,3 +65,16 @@ const axios = axiosLibrary.create({withCredentials: true})
       });
     }
   }
+
+
+  export function updateComps(data) {
+    return (dispatch) => {
+      dispatch(compRequest())
+      axios.put(BASE_URL + '/comps', data).then((response) => {
+        setComps(dispatch, response)
+      }).catch(err => {
+        console.log(err)
+        dispatch(compFailure(err.response.data))
+      });
+  }
+}

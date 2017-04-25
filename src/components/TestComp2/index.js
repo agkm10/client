@@ -23,7 +23,9 @@ class TestComp2 extends Component {
           index: 0
         }
       ],
-      dropboxFiles: []
+      dropboxFiles: [],
+      fileUploadToast: false,
+      fileName: " "
     }
 
   }
@@ -33,12 +35,16 @@ class TestComp2 extends Component {
     this.setState({company: nextProps.inputReturnValues.data[0].company})
     this.setState({dynamicText: nextProps.inputReturnValues.data[0].websites})
     this.setState({dropboxFiles: nextProps.dropboxFiles})
+    // this.setState({fileUploadToast: nextProps.fileUploadToast})
+    // this.setState({fileName: nextProps.fileName})
   }
   handleChange(field, e) {
     this.setState({[field]: e.target.value})
+
   }
   _uploadFile() {
     this.props.uploadFile()
+    alert(this.props.fileName+'uploaded succesfully')
   }
   _getFiles() {}
   _handleDynamicChange(field, e) {
@@ -55,6 +61,9 @@ class TestComp2 extends Component {
     arrayvar.push({text1: "", text2: "", index: arrayvar.length})
     this.setState({dynamicText: arrayvar})
   }
+  runToast() {
+
+  }
   removeDynamicText(field) {
     var arrayvar2 = this.state.dynamicText.slice(0)
     arrayvar2.splice(field, 1)
@@ -63,14 +72,30 @@ class TestComp2 extends Component {
     }
     this.setState({dynamicText: arrayvar2})
   }
+
+
   saveInputs() {
+    var componentCompleted = {
+      component: "TestComp2",
+      completed: false
+    }
     const inputsToServer = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       company: this.state.company,
       websites: JSON.stringify(this.state.dynamicText)
     }
-    this.props.setInputs(inputsToServer)
+    var completeCheck = true;
+    for(var stateCheck in inputsToServer) {
+      if (!inputsToServer[stateCheck]) {
+        completeCheck = false;
+      }
+    }
+    if (completeCheck) {
+      componentCompleted.completed = true;
+    }
+    console.log(inputsToServer)
+    this.props.setInputs(inputsToServer, componentCompleted)
   }
   render() {
     const iconStyles = {
@@ -93,6 +118,12 @@ class TestComp2 extends Component {
       )
     })
     console.log('dropboxfiles', dropboxFiles)
+
+    // if(document.getElementById('file-upload').files[0]){
+    //   var fileName1 = document.getElementById('file-upload').files[0]
+    //   console.log(fileName1)
+    // }
+
 
     const dropboxFileUploads = dropboxFiles.map(file => {
       return (
@@ -120,8 +151,10 @@ class TestComp2 extends Component {
           <button type="button" onClick={this.saveInputs.bind(this)}>Save</button>
           <br></br>
           <br></br>
-          DropBox Files {dropboxFileUploads}
+          DropBox Files
+          {dropboxFileUploads}
           <input type="file" id="file-upload"/>
+
           <button type="button" onClick={this._uploadFile.bind(this)}>Submit</button>
         </div>
       </main>
@@ -129,6 +162,9 @@ class TestComp2 extends Component {
   }
 }
 function mapStateToProps(state) {
-  return {inputReturnValues: state.inputDuck.inputReturnValues, dropboxFiles: state.uploadDuck.dropboxFiles};
+  return {inputReturnValues: state.inputDuck.inputReturnValues,
+    dropboxFiles: state.uploadDuck.dropboxFiles,
+    fileUploadToast: state.uploadDuck.fileUploadToast,
+    fileName: state.uploadDuck.fileName};
 }
 export default connect(mapStateToProps, {setInputs, getInputs, uploadFile, getFiles})(TestComp2);

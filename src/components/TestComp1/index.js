@@ -27,7 +27,7 @@ export default function TestComp1() {
                   <span> <TextField style={{width: 400}} floatingLabelText="City"/>
                       &nbsp;&nbsp;&nbsp;
                     <TextField style={{width: 200}} floatingLabelText="State"/></span>
-                    
+
 
             </div>
         </main>

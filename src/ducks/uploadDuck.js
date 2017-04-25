@@ -13,7 +13,9 @@ const axios = axiosLibrary.create({withCredentials: true})
     loadingUploads: false,
     uploadsLoaded: false,
     errorLoadingUploads: false,
-    dropboxFiles: []
+    dropboxFiles: [],
+    fileUploadToast: false,
+    fileName: ""
   };
 
   export default function uploadDuck(state = initialState, action) {
@@ -29,7 +31,9 @@ const axios = axiosLibrary.create({withCredentials: true})
           uploadReturnValues: action.payload,
           loadingUploads: false,
           errorLoadingUploads: false,
-          uploadsLoaded: true
+          uploadsLoaded: true,
+          fileName: action.payload.fileName,
+          fileUploadToast: true
         })
       case DROPBOX_SUCCESS:
         return Object.assign({}, state, {
@@ -82,6 +86,7 @@ const axios = axiosLibrary.create({withCredentials: true})
           contents: file
         }).then(function(response) {
           alert(file.name + ' uploaded successfully!')
+          response.filName = file.name;
           returnUploads(dispatch, response)
         }).catch(function(error) {
         });
