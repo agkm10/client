@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {uploadFile, getInputs, getFiles} from '../../ducks/inputDuck'
+import {uploadFile, getFiles} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./Logo.css"
 import FontIcon from 'material-ui/FontIcon';
@@ -113,7 +113,7 @@ const pstyle = {
               backgroundColor="#AE863C"
               labelColor="white"
               buttonStyle={{fontWeight: 100}}
-              onClick={this.saveInputs.bind(this)}
+              onClick={this._uploadFile.bind(this)}
             ></RaisedButton>
 
           </div>
@@ -127,6 +127,6 @@ const pstyle = {
   }
 }
 function mapStateToProps(state) {
-  return {inputReturnValues: state.inputDuck.inputReturnValues, dropboxFiles: state.uploadDuck.dropboxFiles};
+  return {dropboxFiles: state.uploadDuck.dropboxFiles};
 }
-export default connect(mapStateToProps, {getInputs, uploadFile, getFiles})(LogoUpload);
+export default connect(mapStateToProps, {uploadFile, getFiles})(LogoUpload);

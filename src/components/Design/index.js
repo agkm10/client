@@ -24,7 +24,6 @@ class Design extends Component {
   }
   componentDidMount() {
     this.props.getInputs()
-    this.props.getFiles()
   }
   componentWillReceiveProps(nextProps) {
     this.setState({designwho: nextProps.inputReturnValues.data[0].designwho})
