@@ -65,17 +65,17 @@ class NavBarTop extends Component {
         cursor: 'pointer'
       }
     };
-    const muiTheme = getMuiTheme({
-      palette: {},
-      Toolbar: {
-        height: 60,
-        color: "#7EC9B3"
-      },
-
-      badge: {
-        fontWeight: 300
-      }
-    });
+    // const muiTheme = getMuiTheme({
+    //   palette: {},
+    //   Toolbar: {
+    //     height: 60,
+    //     color: "#7EC9B3"
+    //   },
+    //
+    //   badge: {
+    //     fontWeight: 300
+    //   }
+    // });
 
     return (
         <Toolbar style={{backgroundColor: '#0E4341', height: 80}}>
@@ -106,7 +106,7 @@ class NavBarTop extends Component {
               <FlatButton
                 label="LOGOUT"
                 primary={true}
-                labelStyle={grey50}
+                labelStyle={{grey50}}
                 style={{color: grey50}}
               />
             </Link>

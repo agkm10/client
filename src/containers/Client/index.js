@@ -24,16 +24,15 @@ export function Client(props) {
       <div>
 
         <NavBarTop/>
-
-        <TestComp2/>
-        <InputTile/>
+<h1>THIS IS CLIENT VIEW</h1>
+        {/* <TestComp2/> */}
+        {/* <InputTile/> */}
         <BillInfo/>
         <BizInfo/>
         <SocialInputs/>
         <LogoUpload/>
         <WebPages/>
         <Design/>
-        {/* <SideStatusBar/> */}
 
         <StatusBar/>
 

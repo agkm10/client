@@ -26,7 +26,6 @@ class BizInfo extends Component {
   }
   componentDidMount() {
     this.props.getInputs()
-    this.props.getFiles()
   }
   componentWillReceiveProps(nextProps) {
     this.setState({businessname: nextProps.inputReturnValues.data[0].businessname})
@@ -85,24 +84,24 @@ width: 600,
       <div className="input-description">Provide your business information for website.</div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Business Name</p>
-         <TextField value={businessname} onChange={this.handleChange.bind(this, 'businessname')} className="hovertexttest" inputStyle={{textColor: red500}} underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="" value={businessname} onChange={this.handleChange.bind(this, 'businessname')} className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Business Address</p>
 
-         <TextField value={businessadd} onChange={this.handleChange.bind(this, 'businessadd')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField value={businessadd} onChange={this.handleChange.bind(this, 'businessadd')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
        </div>
        <div>
           <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>City</p>
-          <TextField value={businesscity} onChange={this.handleChange.bind(this, 'businesscity')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+          <TextField value={businesscity} onChange={this.handleChange.bind(this, 'businesscity')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
         </div>
         <div>
            <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>State</p>
-           <TextField value={businessstate} onChange={this.handleChange.bind(this, 'businessstate')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+           <TextField value={businessstate} onChange={this.handleChange.bind(this, 'businessstate')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
          </div>
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Contact Form Email Address</p>
-            <TextField value={businessemail} onChange={this.handleChange.bind(this, 'businessemail')} className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+            <TextField value={businessemail} onChange={this.handleChange.bind(this, 'businessemail')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
           </div>
           <div className="save-button-inputs">
 

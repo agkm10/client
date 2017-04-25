@@ -30,7 +30,7 @@ class SocialInputs extends Component {
 
     componentDidMount() {
       this.props.getInputs()
-      this.props.getFiles()
+    
     }
 
     componentWillReceiveProps(nextProps) {
@@ -127,7 +127,7 @@ width: 600,
               onClick={this.saveInputs.bind(this)}
             />
           </div>
-          
+
     </div>
   </Paper>
   </main>
