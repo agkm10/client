@@ -25,8 +25,8 @@ class TestComp2 extends Component {
       ],
       dropboxFiles: []
     }
-
   }
+
   componentWillReceiveProps(nextProps) {
     this.setState({firstname: nextProps.inputReturnValues.data[0].firstname})
     this.setState({lastname: nextProps.inputReturnValues.data[0].lastname})

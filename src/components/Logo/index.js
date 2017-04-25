@@ -58,7 +58,7 @@ class LogoUpload extends Component {
   const styles = {
   button: {
     margin: 20,
-    fontWeight: 100,
+    rippleStyle: cyan500
   },
   exampleImageInput: {
     cursor: 'pointer',
@@ -84,7 +84,7 @@ const pstyle = {
       <div className="input-header-title">Upload Your Logo</div>
       <div className="input-description">Prefer Vector but accept these files: .jpeg .pdf .ai .psd .png .svg </div>
       <div className="input-description">
-      <FontIcon style={iconStyles} className="material-icons" color={greenA700}>cloud_done</FontIcon>
+      <FontIcon style={{iconStyles}} className="material-icons" color={greenA700}>cloud_done</FontIcon>
       Files Uploaded: {dropboxFileUploads}
       </div>
           <div className="save-button-inputs">
@@ -103,8 +103,9 @@ const pstyle = {
             >
               <input id="file-upload" type="file" style={styles.exampleImageInput} />
             </RaisedButton>
+
             <RaisedButton
-              href="#fileup"
+              // href="#fileup"
               label="SAVE"
               labelPosition="before"
               icon={<SaveButton />}
@@ -112,15 +113,9 @@ const pstyle = {
               backgroundColor="#AE863C"
               labelColor="white"
               buttonStyle={{fontWeight: 100}}
-              onClick={this._uploadFile.bind(this)}
+              onClick={this.saveInputs.bind(this)}
             ></RaisedButton>
 
-            <Snackbar
-          open={this.state.open}
-          message="Logo File Successfully Uploaded"
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-        />
           </div>
 
 
