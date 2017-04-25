@@ -37,6 +37,7 @@ class InputTile extends Component {
   render() {
     const {varComponentTypes} = this.props;
     const {componentTypes} = this.state
+    console.log('varcomptypes', varComponentTypes)
     const componentMap = componentTypes.filter((type, index) => {
       var check = false
       for (var comp in varComponentTypes.data) {

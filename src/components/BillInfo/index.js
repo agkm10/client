@@ -8,6 +8,8 @@ import {red500, yellow500, cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import {setInputs, getInputs} from '../../ducks/inputDuck'
+import {connect} from "react-redux";
 
 class BillInfo extends Component {
   constructor(){
@@ -22,8 +24,23 @@ class BillInfo extends Component {
       billingstate: "",
       billingzip: ""
 
-    }
+
   }
+
+  saveInputs(e) {
+    const inputsToServer = {
+      billingpoc: this.state.billingpoc,
+      billingphonenumber: this.state.billingphonenumber,
+      billingemail: this.state.billingemail,
+      billingadd: this.state.billingadd,
+      billingcity: this.state.billingcity,
+      billingzip: this.state.billingzip,
+      billingstate: this.state.billingstate
+    }
+    this.props.setInputs(inputsToServer)
+    e.preventDefault();
+  }
+
   handleChange(field, e) {
     this.setState({[field]: e.target.value})
   }
@@ -102,7 +119,6 @@ width: 600,
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Billing Address</p>
-
          <TextField value={billingadd} onChange={this.handleChange.bind(this, 'billingadd')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
        </div>
        <div>
@@ -116,10 +132,12 @@ width: 600,
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Zip Code</p>
             <TextField value={billingzip} onChange={this.handleChange.bind(this, 'billingzip')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+
           </div>
           <div className="save-button-inputs">
 
             <RaisedButton
+              onClick={this.saveInputs.bind(this)}
               href="#fileup"
               label="SAVE"
               labelPosition="before"
@@ -142,5 +160,7 @@ width: 600,
   }
 }
 function mapStateToProps(state) {
-  return {inputReturnValues: state.inputDuck.inputReturnValues}}
+  return {inputReturnValues: state.inputDuck.inputReturnValues}
+}
+
 export default connect(mapStateToProps, {setInputs, getInputs})(BillInfo);
