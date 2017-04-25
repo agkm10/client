@@ -8,6 +8,7 @@ import NavBarTop from '../../components/Nav/index'
 import StatusBar from '../../components/StatusBar/index'
 import SocialInputs from '../../components/Social/index'
 import TestComp1 from '../../components/TestComp1/index'
+import TestComp2 from '../../components/TestComp2/index'
 import LogoUpload from '../../components/Logo/index'
 import BizInfo from '../../components/BizInfo/index'
 import BillInfo from '../../components/BillInfo/index'
@@ -23,18 +24,18 @@ export function Client(props) {
       <div>
 
         <NavBarTop/>
-
-        <InputTile/>
-        {/* <BillInfo/>
+<h1>THIS IS CLIENT VIEW</h1>
+        {/* <TestComp2/> */}
+        {/* <InputTile/> */}
+        <BillInfo/>
         <BizInfo/>
         <SocialInputs/>
         <LogoUpload/>
         <WebPages/>
         <Design/>
-        <SideStatusBar/> */}
 
         <StatusBar/>
-        
+
       </div>
     );
     // } else {

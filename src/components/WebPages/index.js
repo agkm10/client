@@ -66,7 +66,7 @@ width: 600,
           labelPosition="before"
           icon={<AddButton />}
           style={styles.button}
-          backgroundColor="#0E4341"
+          backgroundColor="#1C333D"
           labelColor="white"
           buttonStyle={{fontWeight: 100}}
         ></RaisedButton>

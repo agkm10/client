@@ -54,6 +54,7 @@ class LoginForm extends Component {
         } = this.state
 
         if( isAuthenticated ){
+					console.log('redirecting')
             return(
                 <Redirect to='/client'/>
             )
