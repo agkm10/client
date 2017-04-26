@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import TextField from 'material-ui/TextField';
 import "./WebPages.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, cyan500, grey400} from 'material-ui/styles/colors';
+import {red500, cyan500, grey400} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import AddButton from 'material-ui/svg-icons/action/note-add';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -16,6 +16,7 @@ export default class WebPages extends Component {
     }
   }
   render(){
+    console.log('websites rendered')
     const iconStyles = {
     marginRight: 10,
     fontSize: 14,
@@ -46,14 +47,15 @@ width: 600,
         <div className="placeholderinputs left-flex-delete"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Page Title </div>
          <div id="delete-page"><FontIcon className="material-icons" style={iconStyles} color={grey400} hoverColor={red500}>delete_forever</FontIcon>delete page</div>
       </div>
-      <TextField className="hovertexttest" inputStyle={false} underlineShow={false} style = {inStyle} hintText="" />
+      <TextField id="text1" className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" />
       <div>
-        <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500} >arrow_forward</FontIcon>Page Content</p>
+        <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Page Content</p>
         <TextField
+          id="text2"
           className="hovertexttest"
-          inputStyle={false}
+
           underlineShow={false}
-          style = {inStyle}
+          style={inStyle}
           hintText=""
           multiLine={true}
           rows={4}

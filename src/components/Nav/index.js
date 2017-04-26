@@ -1,23 +1,18 @@
 import React, {Component} from 'react';
-import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
 import Badge from 'material-ui/Badge';
 import NotificationsIcon from 'material-ui/svg-icons/communication/message';
-import Profile from 'material-ui/svg-icons/action/account-circle';
+// import Profile from 'material-ui/svg-icons/action/account-circle';
 import WatsonIcon from 'material-ui/svg-icons/action/fingerprint';
-import DropArrow from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import goldsageLogo from "../../assets/logoforgroupapp.svg";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {grey50} from 'material-ui/styles/colors';
 import {logout} from '../../ducks/authDuck'
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import "./nav.css"
 
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 
 class NavBarTop extends Component {
   constructor() {
@@ -34,37 +29,37 @@ class NavBarTop extends Component {
     alert('onTouchTap triggered on the title component');
   }
   render() {
-    const links = (
-      <div>
-        <IconButton tooltip="Watson chat">
-          <WatsonIcon color={grey50}/>
-        </IconButton>
+    // const links = (
+    //   <div>
+    //     <IconButton tooltip="Watson chat">
+    //       <WatsonIcon color={grey50}/>
+    //     </IconButton>
+    //
+    //     <Badge badgeContent={10} secondary={true} badgeStyle={{
+    //       top: 12,
+    //       right: 12
+    //     }}>
+    //
+    //       <Link to="/messages">
+    //         <IconButton tooltip="message">
+    //           <NotificationsIcon color={grey50}/>
+    //         </IconButton>
+    //       </Link>
+    //     </Badge>
+    //
+    //     <Link to="/" onClick={this.handleClick}>
+    //       <IconButton tooltip="Logout">
+    //         <Profile color={grey50}/>
+    //       </IconButton>
+    //     </Link>
+    //   </div>
+    // )
 
-        <Badge badgeContent={10} secondary={true} badgeStyle={{
-          top: 12,
-          right: 12
-        }}>
-
-          <Link to="/messages">
-            <IconButton tooltip="message">
-              <NotificationsIcon color={grey50}/>
-            </IconButton>
-          </Link>
-        </Badge>
-
-        <Link to="/" onClick={this.handleClick}>
-          <IconButton tooltip="Logout">
-            <Profile color={grey50}/>
-          </IconButton>
-        </Link>
-      </div>
-    )
-
-    const styles = {
-      title: {
-        cursor: 'pointer'
-      }
-    };
+    // const styles = {
+    //   title: {
+    //     cursor: 'pointer'
+    //   }
+    // };
     // const muiTheme = getMuiTheme({
     //   palette: {},
     //   Toolbar: {

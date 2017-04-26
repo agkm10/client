@@ -1,14 +1,12 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {uploadFile, getFiles} from '../../ducks/inputDuck'
-import TextField from 'material-ui/TextField';
 import "./Logo.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, blue500, cyan500, greenA700} from 'material-ui/styles/colors';
+import {cyan500, greenA700} from 'material-ui/styles/colors';
 import UploadButton from 'material-ui/svg-icons/file/file-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 
 
@@ -41,6 +39,7 @@ class LogoUpload extends Component {
     };
 
   render(){
+    console.log('logo rendered')
   var {dropboxFiles}=this.state
 
     const dropboxFileUploads = dropboxFiles.map(file => {

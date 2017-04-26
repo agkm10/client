@@ -18,7 +18,7 @@ export default function TestComp1() {
 								</div>
                   <div>
                     <h3>Full Text</h3>
-                    <TextField inputStyle={false} underlineShow={false} style={{width: 600, fontSize: 25}} hintText="Full Name" floatingLabelText=""/><br/>
+                    <TextField  underlineShow={false} style={{width: 600, fontSize: 25}} hintText="Full Name" floatingLabelText=""/><br/>
                   </div>
                     <TextField style={{width: 600, fontSize: 25}} />
                     <br></br>

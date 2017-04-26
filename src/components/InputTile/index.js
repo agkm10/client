@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import "./inputTile.css";
 import {getComps} from '../../ducks/clientDuck'
 import {connect} from "react-redux";
-import NavBarTop from '../Nav/index'
-import StatusBar from '../StatusBar/index'
 import SocialInputs from '../Social/index'
 import TestComp1 from '../TestComp1/index'
 import TestComp2 from '../TestComp2/index'
@@ -12,7 +10,6 @@ import BizInfo from '../BizInfo/index'
 import BillInfo from '../BillInfo/index'
 import WebPages from '../WebPages/index'
 import Design from '../Design/index'
-import SideStatusBar from '../SideStatusBar/index'
 
 class InputTile extends Component {
   constructor(props) {
@@ -32,12 +29,17 @@ class InputTile extends Component {
 
   }
   componentDidMount() {
-    this.props.getComps()
+      this.props.getComps()
+
+  }
+  componentWillReceiveProps(nextProps) {
+
   }
   render() {
+    // console.log(this.props)
     const {varComponentTypes} = this.props;
     const {componentTypes} = this.state
-    console.log('varcomptypes', varComponentTypes)
+    // console.log('varcomptypes', varComponentTypes)
     const componentMap = componentTypes.filter((type, index) => {
       var check = false
       for (var comp in varComponentTypes.data) {
@@ -62,6 +64,7 @@ class InputTile extends Component {
   }
 }
 function mapStateToProps(state) {
-  return {varComponentTypes: state.clientDuck.varComponentTypes};
+  return {varComponentTypes: state.clientDuck.varComponentTypes,
+          checkcheck: state.clientDuck.checkcheck};
 }
 export default connect(mapStateToProps, {getComps})(InputTile);

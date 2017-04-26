@@ -5,17 +5,9 @@ import "./Client.scss";
 import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
 import NavBarTop from '../../components/Nav/index'
-import StatusBar from '../../components/StatusBar/index'
-import SocialInputs from '../../components/Social/index'
-import TestComp1 from '../../components/TestComp1/index'
-import TestComp2 from '../../components/TestComp2/index'
-import LogoUpload from '../../components/Logo/index'
-import BizInfo from '../../components/BizInfo/index'
-import BillInfo from '../../components/BillInfo/index'
-import WebPages from '../../components/WebPages/index'
-import Design from '../../components/Design/index'
-import SideStatusBar from '../../components/SideStatusBar/index'
-import WatsonChat from '../../components/WatsonChat/index'
+
+import StatusBar from '../../components/StatusBar/index';
+
 
 export function Client(props) {
 
@@ -25,15 +17,10 @@ export function Client(props) {
       <div>
 
         <NavBarTop/>
-        <WatsonChat/>
-        {/* <TestComp2/> */}
-        {/* <InputTile/> */}
-        <BillInfo/>
-        <BizInfo/>
-        <SocialInputs/>
-        <LogoUpload/>
-        <WebPages/>
-        <Design/>
+
+
+        <InputTile/>
+
 
         <StatusBar/>
 

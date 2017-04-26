@@ -9,7 +9,6 @@ import BizInfo from '../BizInfo/index'
 import BillInfo from '../BillInfo/index'
 import WebPages from '../WebPages/index'
 import Design from '../Design/index'
-import SideStatusBar from '../SideStatusBar/index'
 import "./statusbar.css"
 import IconButton from 'material-ui/IconButton';
 import IconComplete from 'material-ui/svg-icons/navigation/check';
@@ -37,7 +36,11 @@ class StatusBar extends Component {
   componentDidMount() {
     this.props.getComps()
   }
+  componentWillReceiveProps(nextProps) {
+      console.log('next props', nextProps.varComponentTypes)
+  }
   render() {
+    console.log('statusbar rendered')
     const {varComponentTypes} = this.props;
     const {componentTypes} = this.state
     var compCount = 0;

@@ -4,13 +4,15 @@ const axios = axiosLibrary.create({withCredentials: true})
   const COMP_REQUEST = "COMP_REQUEST",
     COMP_SUCCESS = "COMP_SUCCESS",
     COMP_FAILURE = "COMP_FAILURE",
+    COMP_COMPLETED = "COMP_COMPLETED",
     BASE_URL = "http://localhost:3002/api";
 
   const initialState = {
     varComponentTypes: [],
     loadingComps: false,
     compsLoaded: false,
-    errorLoadingComps: false
+    errorLoadingComps: false,
+    checkcheck: ""
   };
 
   export default function clientDuck(state = initialState, action) {
@@ -34,6 +36,20 @@ const axios = axiosLibrary.create({withCredentials: true})
           loadingComps: false,
           compError: action.error
         })
+      case COMP_COMPLETED:
+        var completedArr = {}
+        Object.assign(completedArr, state.varComponentTypes)
+        console.log('payload', action.payload)
+        console.log('varcomptypes', state.varComponentTypes)
+        completedArr.data.map(function(comp){
+          if (comp.compName === action.payload.component) {
+            comp.completed = action.payload.completed
+          }
+        })
+        console.log('completedArr',completedArr)
+        return Object.assign({}, state, {
+          varComponentTypes: completedArr
+        })
       default:
         return state;
     }
@@ -50,28 +66,29 @@ const axios = axiosLibrary.create({withCredentials: true})
   function compFailure(err) {
     return {type: COMP_FAILURE, error: err}
   }
-  function setComps(dispatch, response) {
-    dispatch(compSuccess(response));
+  function compComplete(response) {
+    return {type: COMP_COMPLETED, payload: response}
   }
+
   //data is going to be req.body
   export function getComps() {
     return (dispatch) => {
       dispatch(compRequest())
       axios.get(BASE_URL + '/comps').then((response) => {
-        setComps(dispatch, response)
+        dispatch(compSuccess(response))
       }).catch(err => {
-        console.log(err)
+        if (err.response) {
         dispatch(compFailure(err.response.data))
+      }
       });
     }
   }
-
-
   export function updateComps(data) {
+    console.log('updateComps', data)
     return (dispatch) => {
-      dispatch(compRequest())
+      dispatch(compComplete(data))
       axios.put(BASE_URL + '/comps', data).then((response) => {
-        setComps(dispatch, response)
+        console.log('updateComps Success', response)
       }).catch(err => {
         console.log(err)
         dispatch(compFailure(err.response.data))

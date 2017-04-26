@@ -1,10 +1,8 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-import {setInputs, getInputs} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./BillInfo.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, cyan500} from 'material-ui/styles/colors';
+import {cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
@@ -23,21 +21,8 @@ class BillInfo extends Component {
       billingstate: "",
       billingzip: ""
 
-
-  }
-}
-  saveInputs(e) {
-    const inputsToServer = {
-      billingpoc: this.state.billingpoc,
-      billingphonenumber: this.state.billingphonenumber,
-      billingemail: this.state.billingemail,
-      billingadd: this.state.billingadd,
-      billingcity: this.state.billingcity,
-      billingzip: this.state.billingzip,
-      billingstate: this.state.billingstate
     }
-    this.props.setInputs(inputsToServer)
-    e.preventDefault();
+
   }
 
   handleChange(field, e) {
@@ -69,7 +54,7 @@ class BillInfo extends Component {
     e.preventDefault()
   }
   render(){
-
+    console.log('bill info rendered')
     var {billingpoc,
         billingphonenumber,
         billingemail,
@@ -106,37 +91,36 @@ width: 600,
       <div className="input-description">This is for Goldsage Billing Contact Info and payment processing</div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Billing Point of Contact Name</p>
-         <TextField value={billingpoc} onChange={this.handleChange.bind(this, 'billingpoc')} className="hovertexttest" underlineShow={false} style = {inStyle} hintText="" /><br/>
+         <TextField id="billingPOC1" value={billingpoc} onChange={this.handleChange.bind(this, 'billingpoc')} className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Direct Phone Number</p>
-         <TextField value={billingphonenumber} onChange={this.handleChange.bind(this, 'billingphonenumber')} className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="billingphonenumber1" value={billingphonenumber} onChange={this.handleChange.bind(this, 'billingphonenumber')} className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Email</p>
-         <TextField value={billingemail} onChange={this.handleChange.bind(this, 'billingemail')}  className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="billingemail1" value={billingemail} onChange={this.handleChange.bind(this, 'billingemail')}  className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Billing Address</p>
-         <TextField value={billingadd} onChange={this.handleChange.bind(this, 'billingadd')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="billingadd1" value={billingadd} onChange={this.handleChange.bind(this, 'billingadd')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
        </div>
        <div>
           <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>City</p>
-          <TextField value={billingcity} onChange={this.handleChange.bind(this, 'billingcity')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+          <TextField id="billingcity1" value={billingcity} onChange={this.handleChange.bind(this, 'billingcity')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
         </div>
         <div>
            <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>State</p>
-           <TextField value={billingstate} onChange={this.handleChange.bind(this, 'billingstate')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+           <TextField id="billingstate1" value={billingstate} onChange={this.handleChange.bind(this, 'billingstate')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
          </div>
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Zip Code</p>
-            <TextField value={billingzip} onChange={this.handleChange.bind(this, 'billingzip')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+            <TextField id="billingzip1" value={billingzip} onChange={this.handleChange.bind(this, 'billingzip')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
 
           </div>
           <div className="save-button-inputs">
 
             <RaisedButton
-              onClick={this.saveInputs.bind(this)}
               href="#fileup"
               label="SAVE"
               labelPosition="before"
