@@ -8,8 +8,7 @@ import {red500, yellow500, cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import {setInputs, getInputs} from '../../ducks/inputDuck'
-import {connect} from "react-redux";
+
 
 class BillInfo extends Component {
   constructor(){
@@ -26,7 +25,7 @@ class BillInfo extends Component {
 
 
   }
-
+}
   saveInputs(e) {
     const inputsToServer = {
       billingpoc: this.state.billingpoc,

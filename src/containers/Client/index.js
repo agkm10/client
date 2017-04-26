@@ -15,6 +15,7 @@ import BillInfo from '../../components/BillInfo/index'
 import WebPages from '../../components/WebPages/index'
 import Design from '../../components/Design/index'
 import SideStatusBar from '../../components/SideStatusBar/index'
+import WatsonChat from '../../components/WatsonChat/index'
 
 export function Client(props) {
 
@@ -24,7 +25,7 @@ export function Client(props) {
       <div>
 
         <NavBarTop/>
-<h1>THIS IS CLIENT VIEW</h1>
+        <WatsonChat/>
         {/* <TestComp2/> */}
         {/* <InputTile/> */}
         <BillInfo/>
