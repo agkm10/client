@@ -50,19 +50,19 @@ const axios = axiosLibrary.create({withCredentials: true})
   function InputFailure(err) {
     return {type: INPUT_FAILURE, error: err}
   }
-  function returnInputs(dispatch, response) {
-    dispatch(InputSuccess(response));
-  }
+  
   //data is going to be req.body
   export function setInputs(data) {
     return (dispatch) => {
       dispatch(InputRequest())
       axios.put(BASE_URL + '/inputs',data).then((response) => {
         console.log('returnInputs', response)
-        returnInputs(dispatch, response)
+        dispatch(InputSuccess(response))
       }).catch(err => {
+        if(err){
         console.log(err)
         dispatch(InputFailure(err.response.data))
+        }
       });
     }
   }
@@ -72,10 +72,12 @@ const axios = axiosLibrary.create({withCredentials: true})
       dispatch(InputRequest())
       axios.get(BASE_URL + '/inputs').then((response) => {
         console.log('returnInputs', response)
-        returnInputs(dispatch, response)
+        dispatch(InputSuccess(response))
       }).catch(err => {
+        if(err){
         console.log(err)
         dispatch(InputFailure(err.response.data))
+        }
       });
     }
   }

@@ -30,10 +30,11 @@ class SocialInputs extends Component {
 
     componentDidMount() {
       this.props.getInputs()
-    
+
     }
 
     componentWillReceiveProps(nextProps) {
+      if (nextProps.inputReturnValues.data[0]){
       this.setState({socialfacebook: nextProps.inputReturnValues.data[0].socialfacebook})
       this.setState({socialinstagram: nextProps.inputReturnValues.data[0].socialinstagram})
       this.setState({socialtwitter: nextProps.inputReturnValues.data[0].socialtwitter})
@@ -42,10 +43,10 @@ class SocialInputs extends Component {
       this.setState({socialpinterest: nextProps.inputReturnValues.data[0].socialpinterest})
       this.setState({socialother: nextProps.inputReturnValues.data[0].socialother})
     }
+    }
 
     saveInputs(e) {
       const inputsToServer = {
-        socialinstagram: this.state.socialinstagram,
         socialinstagram: this.state.socialinstagram,
         socialtwitter: this.state.socialtwitter,
         socialyoutube: this.state.socialyoutube,
@@ -60,6 +61,7 @@ class SocialInputs extends Component {
 
 
   render(){
+    console.log('social rendered')
     const iconStyles = {
     marginRight: 10,
     fontSize: 14,
@@ -88,32 +90,32 @@ width: 600,
       <div className="input-description">Find your social network links and copy and paste them below.</div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Facebook Link</p>
-         <TextField className="hovertexttest" inputStyle={{textColor: red500}} underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="facebooklink" className="hovertexttest" inputStyle={{textColor: red500}} underlineShow={false} style={inStyle} hintText="" /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Instagram</p>
 
-         <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="instagram" className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
        </div>
        <div>
           <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Twitter</p>
-          <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+          <TextField id="twitter" className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
         </div>
         <div>
            <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Youtube</p>
-           <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+           <TextField id="youtube" className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
          </div>
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Linkedin</p>
-            <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+            <TextField id="linked" className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
           </div>
           <div>
              <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Pinterest</p>
-             <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+             <TextField id="pinterest" className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
            </div>
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Other Link</p>
-            <TextField className="hovertexttest" inputStyle={false}  underlineShow={false} style={inStyle} hintText="" /><br/>
+            <TextField id="otherLink" className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
           </div>
           <div className="save-button-inputs">
             <RaisedButton

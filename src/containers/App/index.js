@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Route, Switch, Redirect} from "react-router-dom";
 import LoginPage from '../LoginPage/index';
 import Client from '../Client/index';
-import MessagePage from '../MessagePage/index';
+// import MessagePage from '../MessagePage/index';
 import RoomsContainer from '../RoomsContainer/index';
 import {checkUserAuth} from '../../ducks/authDuck'
 import "./App.css";
