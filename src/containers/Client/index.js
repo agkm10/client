@@ -5,7 +5,9 @@ import "./Client.scss";
 import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
 import NavBarTop from '../../components/Nav/index'
+
 import StatusBar from '../../components/StatusBar/index';
+
 
 export function Client(props) {
 
@@ -16,7 +18,9 @@ export function Client(props) {
 
         <NavBarTop/>
 
+
         <InputTile/>
+
 
         <StatusBar/>
 
