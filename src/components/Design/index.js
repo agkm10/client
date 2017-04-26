@@ -4,7 +4,7 @@ import {setInputs, getInputs} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./Design.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, cyan500} from 'material-ui/styles/colors';
+import {cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
@@ -14,9 +14,9 @@ class Design extends Component {
     super();
     this.state = {
       inputReturnValues: {},
-      designwho: "",
-      designaction: "",
-      designurl: "",
+      designwho: "Kurt",
+      designaction: "McGallion",
+      designurl: "kurtmcgallion.com",
     }
   }
   handleChange(field, e) {
@@ -26,9 +26,9 @@ class Design extends Component {
     this.props.getInputs()
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({designwho: nextProps.inputReturnValues.data[0].designwho})
-    this.setState({designaction: nextProps.inputReturnValues.data[0].designaction})
-    this.setState({designurl: nextProps.inputReturnValues.data[0].designurl})
+    // this.setState({designwho: nextProps.inputReturnValues.data[0].designwho})
+    // this.setState({designaction: nextProps.inputReturnValues.data[0].designaction})
+    // this.setState({designurl: nextProps.inputReturnValues.data[0].designurl})
   }
   saveInputs(e) {
     const inputsToServer = {
@@ -42,29 +42,29 @@ class Design extends Component {
   }
 
   render(){
-
+    console.log('design rendered')
     var {designwho,
         designaction,
-        designurl,} = this.state;
+        designurl} = this.state;
 
     const iconStyles = {
     marginRight: 10,
-    fontSize: 14,
+    fontSize: 14
   }
   const inStyle = {
     width: '90%',
     fontSize: 25,
-    fontWeight: 300,
+    fontWeight: 300
   }
   const styles = {
   button: {
     margin: 20,
-    fontWeight: 100,
+    fontWeight: 100
   }
 }
 const pstyle = {
 padding: 40,
-width: 600,
+width: 600
 }
 
   return(
@@ -77,13 +77,13 @@ width: 600,
       <div>
         <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500} >arrow_forward</FontIcon>Who is visiting your site? Be specific as to what type of person or customer is visiting your site.</p>
         <TextField
+          id="design"
           value={designwho}
           onChange={this.handleChange.bind(this, 'designwho')}
           className="hovertexttest"
-          inputStyle={false}
+
           underlineShow={false}
           style={inStyle}
-          hintText=""
           multiLine={true}
           rows={3}
         /><br/>
@@ -94,10 +94,9 @@ width: 600,
           value={designaction}
           onChange={this.handleChange.bind(this, 'designaction')}
           className="hovertexttest"
-          inputStyle={false}
+          id="design2"
           underlineShow={false}
           style={inStyle}
-          hintText=""
           multiLine={true}
           rows={3}
         /><br/>
@@ -108,10 +107,9 @@ width: 600,
           value={designurl}
           onChange={this.handleChange.bind(this, 'designurl')}
           className="hovertexttest"
-          inputStyle={false}
+          id="design3"
           underlineShow={false}
           style={inStyle}
-          hintText=""
           multiLine={true}
           rows={3}
         /><br/>

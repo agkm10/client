@@ -4,7 +4,7 @@ import {setInputs, getInputs} from '../../ducks/inputDuck'
 import TextField from 'material-ui/TextField';
 import "./BizInfo.css"
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, cyan500} from 'material-ui/styles/colors';
+import {cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
@@ -28,11 +28,13 @@ class BizInfo extends Component {
     this.props.getInputs()
   }
   componentWillReceiveProps(nextProps) {
+    if(nextProps.inputReturnValues.data[0]){
     this.setState({businessname: nextProps.inputReturnValues.data[0].businessname})
     this.setState({businessadd: nextProps.inputReturnValues.data[0].businessadd})
     this.setState({businesscity: nextProps.inputReturnValues.data[0].businesscity})
     this.setState({businessstate: nextProps.inputReturnValues.data[0].businessstate})
     this.setState({businessemail: nextProps.inputReturnValues.data[0].businessemail})
+  }
 
   }
   saveInputs(e) {
@@ -48,12 +50,12 @@ class BizInfo extends Component {
     e.preventDefault()
   }
   render(){
+    console.log('biz info rendered')
 
     var {businessname,
         businessadd,
         businesscity,
         businessstate,
-        billingcity,
         businessemail} = this.state;
 
     const iconStyles = {
@@ -84,24 +86,24 @@ width: 600,
       <div className="input-description">Provide your business information for website.</div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Business Name</p>
-         <TextField id="" value={businessname} onChange={this.handleChange.bind(this, 'businessname')} className="hovertexttest" underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="businessname" value={businessname} onChange={this.handleChange.bind(this, 'businessname')} className="hovertexttest" underlineShow={false} style={inStyle}  /><br/>
       </div>
       <div>
          <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Business Address</p>
 
-         <TextField value={businessadd} onChange={this.handleChange.bind(this, 'businessadd')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+         <TextField id="businessadd" value={businessadd} onChange={this.handleChange.bind(this, 'businessadd')} className="hovertexttest"  underlineShow={false} style={inStyle}  /><br/>
        </div>
        <div>
           <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>City</p>
-          <TextField value={businesscity} onChange={this.handleChange.bind(this, 'businesscity')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+          <TextField id="businesscity" value={businesscity} onChange={this.handleChange.bind(this, 'businesscity')} className="hovertexttest"  underlineShow={false} style={inStyle} /><br/>
         </div>
         <div>
            <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>State</p>
-           <TextField value={businessstate} onChange={this.handleChange.bind(this, 'businessstate')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+           <TextField id="businessstate" value={businessstate} onChange={this.handleChange.bind(this, 'businessstate')} className="hovertexttest"  underlineShow={false} style={inStyle}  /><br/>
          </div>
          <div>
             <p className="placeholderinputs"><FontIcon className="material-icons" style={iconStyles} color={cyan500}>arrow_forward</FontIcon>Contact Form Email Address</p>
-            <TextField value={businessemail} onChange={this.handleChange.bind(this, 'businessemail')} className="hovertexttest"  underlineShow={false} style={inStyle} hintText="" /><br/>
+            <TextField id="businesscfea" value={businessemail} onChange={this.handleChange.bind(this, 'businessemail')} className="hovertexttest"  underlineShow={false} style={inStyle} /><br/>
           </div>
           <div className="save-button-inputs">
 

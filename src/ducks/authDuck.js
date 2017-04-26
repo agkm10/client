@@ -112,13 +112,13 @@ const socket = io('http://localhost:3002')
         return { type:CHECK_AUTH_FAILURE }
     }
 
-    function connectToSocket( dispatch ) {
-        const token = JSON.parse(localStorage.getItem( 'token' ));
-        socket.on('retrieveAllMessages', data=>{
-            dispatch( getMessages( data ) );
-        })
-        socket.emit( 'fetchAllMessages' )
-    }
+    // function connectToSocket( dispatch ) {
+    //     const token = JSON.parse(localStorage.getItem( 'token' ));
+    //     socket.on('retrieveAllMessages', data=>{
+    //         dispatch( getMessages( data ) );
+    //     })
+    //     socket.emit( 'fetchAllMessages' )
+    // }
 
     function getMessages( messages ) {
         return {
