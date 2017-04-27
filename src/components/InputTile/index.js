@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import "./inputTile.css";
 import {getComps} from '../../ducks/clientDuck'
+import {getFiles} from '../../ducks/uploadDuck'
+import {getInputs} from '../../ducks/inputDuck'
 import {connect} from "react-redux";
 import SocialInputs from '../Social/index'
 import TestComp1 from '../TestComp1/index'
@@ -10,6 +12,7 @@ import BizInfo from '../BizInfo/index'
 import BillInfo from '../BillInfo/index'
 import WebPages from '../WebPages/index'
 import Design from '../Design/index'
+
 
 class InputTile extends Component {
   constructor(props) {
@@ -30,6 +33,8 @@ class InputTile extends Component {
   }
   componentDidMount() {
       this.props.getComps()
+      this.props.getInputs()
+      this.props.getFiles()
 
   }
   componentWillReceiveProps(nextProps) {
@@ -67,4 +72,4 @@ function mapStateToProps(state) {
   return {varComponentTypes: state.clientDuck.varComponentTypes,
           checkcheck: state.clientDuck.checkcheck};
 }
-export default connect(mapStateToProps, {getComps})(InputTile);
+export default connect(mapStateToProps, {getComps, getFiles, getInputs})(InputTile);

@@ -1,14 +1,14 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {uploadFile, getFiles} from '../../ducks/inputDuck'
+import {uploadFile, getFiles} from '../../ducks/uploadDuck'
 import "./Logo.css"
 import FontIcon from 'material-ui/FontIcon';
 import {cyan500, greenA700} from 'material-ui/styles/colors';
 import UploadButton from 'material-ui/svg-icons/file/file-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
-
+import SaveButton from 'material-ui/svg-icons/file/cloud-upload'
+import {updateComps} from '../../ducks/clientDuck'
 
 class LogoUpload extends Component {
   constructor(props){
@@ -18,11 +18,19 @@ class LogoUpload extends Component {
       dropboxFiles: [],
     }
   }
+
   componentWillReceiveProps(nextProps) {
     this.setState({dropboxFiles: nextProps.dropboxFiles})
   }
-  _uploadFile() {
+  _uploadFile(e) {
     this.props.uploadFile()
+    var componentCompleted = {
+      component: "LogoUpload",
+      completed: true
+    }
+    this.props.updateComps(componentCompleted)
+    e.preventDefault()
+
   }
   componentDidMount() {
     this.props.getFiles()
@@ -39,8 +47,8 @@ class LogoUpload extends Component {
     };
 
   render(){
-    console.log('logo rendered')
-  var {dropboxFiles}=this.state
+    // console.log('logo rendered')
+    var {dropboxFiles}=this.props
 
     const dropboxFileUploads = dropboxFiles.map(file => {
       return (
@@ -93,12 +101,10 @@ const pstyle = {
               icon={<UploadButton />}
               style={styles.button}
               backgroundColor="#1C333D"
-              labelColor="white"
+              labelColor="#FFFFFF"
               buttonStyle={{fontWeight: 100}}
               containerElement="label"
               onTouchTap={this.handleTouchTap}
-
-
             >
               <input id="file-upload" type="file" style={styles.exampleImageInput} />
             </RaisedButton>
@@ -110,7 +116,7 @@ const pstyle = {
               icon={<SaveButton />}
               style={styles.button}
               backgroundColor="#AE863C"
-              labelColor="white"
+              labelColor="#FFFFFF"
               buttonStyle={{fontWeight: 100}}
               onClick={this._uploadFile.bind(this)}
             ></RaisedButton>
@@ -128,4 +134,4 @@ const pstyle = {
 function mapStateToProps(state) {
   return {dropboxFiles: state.uploadDuck.dropboxFiles};
 }
-export default connect(mapStateToProps, {uploadFile, getFiles})(LogoUpload);
+export default connect(mapStateToProps, {uploadFile, getFiles, updateComps})(LogoUpload);

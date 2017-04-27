@@ -33,14 +33,9 @@ class StatusBar extends Component {
 
     }
   }
-  componentDidMount() {
-    this.props.getComps()
-  }
-  componentWillReceiveProps(nextProps) {
-      console.log('next props', nextProps.varComponentTypes)
-  }
+
   render() {
-    console.log('statusbar rendered')
+    // console.log('statusbar rendered')
     const {varComponentTypes} = this.props;
     const {componentTypes} = this.state
     var compCount = 0;
