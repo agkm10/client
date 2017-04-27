@@ -10,6 +10,7 @@ import {setInputs, getInputs} from '../../ducks/inputDuck'
 import {connect} from "react-redux";
 import {updateComps} from '../../ducks/clientDuck'
 
+
 class BillInfo extends Component {
   constructor() {
     super();
@@ -21,6 +22,7 @@ class BillInfo extends Component {
       billingcity: "",
       billingstate: "",
       billingzip: ""
+
     }
   }
 
