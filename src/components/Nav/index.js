@@ -29,48 +29,6 @@ class NavBarTop extends Component {
     alert('onTouchTap triggered on the title component');
   }
   render() {
-    // const links = (
-    //   <div>
-    //     <IconButton tooltip="Watson chat">
-    //       <WatsonIcon color={grey50}/>
-    //     </IconButton>
-    //
-    //     <Badge badgeContent={10} secondary={true} badgeStyle={{
-    //       top: 12,
-    //       right: 12
-    //     }}>
-    //
-    //       <Link to="/messages">
-    //         <IconButton tooltip="message">
-    //           <NotificationsIcon color={grey50}/>
-    //         </IconButton>
-    //       </Link>
-    //     </Badge>
-    //
-    //     <Link to="/" onClick={this.handleClick}>
-    //       <IconButton tooltip="Logout">
-    //         <Profile color={grey50}/>
-    //       </IconButton>
-    //     </Link>
-    //   </div>
-    // )
-
-    // const styles = {
-    //   title: {
-    //     cursor: 'pointer'
-    //   }
-    // };
-    // const muiTheme = getMuiTheme({
-    //   palette: {},
-    //   Toolbar: {
-    //     height: 60,
-    //     color: "#7EC9B3"
-    //   },
-    //
-    //   badge: {
-    //     fontWeight: 300
-    //   }
-    // });
 
     return (
         <Toolbar style={{backgroundColor: '#0E4341', height: 80}}>

@@ -11,9 +11,8 @@ import StatusBar from '../../components/StatusBar/index';
 
 export function Client(props) {
 
-  function checkAuth() {
-    // if (props.isAuth) {
-    return (
+  return (
+    <main className="landing">
       <div>
 
         <NavBarTop/>
@@ -25,15 +24,6 @@ export function Client(props) {
         <StatusBar/>
 
       </div>
-    );
-    // } else {
-    // 		return <h3>You are not logged in</h3>
-    // }
-  }
-
-  return (
-    <main className="landing">
-      {checkAuth()}
     </main>
   );
 }

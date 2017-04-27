@@ -39,14 +39,11 @@ const axios = axiosLibrary.create({withCredentials: true})
       case COMP_COMPLETED:
         var completedArr = {}
         Object.assign(completedArr, state.varComponentTypes)
-        console.log('payload', action.payload)
-        console.log('varcomptypes', state.varComponentTypes)
         completedArr.data.map(function(comp){
           if (comp.compName === action.payload.component) {
             comp.completed = action.payload.completed
           }
         })
-        console.log('completedArr',completedArr)
         return Object.assign({}, state, {
           varComponentTypes: completedArr
         })
@@ -84,11 +81,9 @@ const axios = axiosLibrary.create({withCredentials: true})
     }
   }
   export function updateComps(data) {
-    console.log('updateComps', data)
     return (dispatch) => {
       dispatch(compComplete(data))
       axios.put(BASE_URL + '/comps', data).then((response) => {
-        console.log('updateComps Success', response)
       }).catch(err => {
         console.log(err)
         dispatch(compFailure(err.response.data))

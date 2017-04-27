@@ -10,7 +10,23 @@ const axios = axiosLibrary.create({withCredentials: true})
     inputReturnValues: {},
     loadingInputs: false,
     inputsLoaded: false,
-    errorLoadingInputs: false
+    errorLoadingInputs: false,
+    firstname: "",
+    lastname: "",
+    company: "",
+    dynamicText: [
+      {
+        text1: "",
+        text2: "",
+        index: 0
+      }
+    ],
+    socialinstagram: "",
+    socialtwitter: "",
+    socialyoutube: "",
+    sociallinkedin: "",
+    socialpinterest: "",
+    socialother: "",
   };
 
   export default function clientDuck(state = initialState, action) {
@@ -27,6 +43,16 @@ const axios = axiosLibrary.create({withCredentials: true})
           loadingInputs: false,
           errorLoadingInputs: false,
           inputsLoaded: true
+          // firstname: action.payload.data[0].firstname,
+          // lastname: action.payload.data[0].lastname,
+          // company: action.payload.data[0].company,
+          // dynamicText: action.payload.data[0].websites,
+          // socialinstagram: action.payload.data[0].socialinstagram,
+          // socialtwitter: action.payload.data[0].socialtwitter,
+          // socialyoutube: action.payload.data[0].socialyoutube,
+          // sociallinkedin: action.payload.data[0].sociallinkedin,
+          // socialpinterest: action.payload.data[0].socialpinterest,
+          // socialother: action.payload.data[0].socialother,
         })
       case INPUT_FAILURE:
         return Object.assign({}, state, {
@@ -50,13 +76,12 @@ const axios = axiosLibrary.create({withCredentials: true})
   function InputFailure(err) {
     return {type: INPUT_FAILURE, error: err}
   }
-  
+
   //data is going to be req.body
   export function setInputs(data) {
     return (dispatch) => {
       dispatch(InputRequest())
       axios.put(BASE_URL + '/inputs',data).then((response) => {
-        console.log('returnInputs', response)
         dispatch(InputSuccess(response))
       }).catch(err => {
         if(err){
@@ -71,7 +96,6 @@ const axios = axiosLibrary.create({withCredentials: true})
     return (dispatch) => {
       dispatch(InputRequest())
       axios.get(BASE_URL + '/inputs').then((response) => {
-        console.log('returnInputs', response)
         dispatch(InputSuccess(response))
       }).catch(err => {
         if(err){

@@ -7,7 +7,6 @@ import FlatButton from 'material-ui/FlatButton';
 import { withRouter, Redirect } from 'react-router-dom';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Field, reduxForm } from 'redux-form';
-// import { store } from '../../store'
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
 				<TextField
