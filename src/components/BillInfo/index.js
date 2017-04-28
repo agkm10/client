@@ -6,6 +6,10 @@ import {cyan500} from 'material-ui/styles/colors';
 import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import {connect} from "react-redux"
+import {getInputs, setInputs} from "../../ducks/inputDuck"
+import {postSystemWatson} from "../../ducks/messageDuck"
+import brainIcon from "../../assets/logoquestion.svg";
 
 
 class BillInfo extends Component {
@@ -53,6 +57,12 @@ class BillInfo extends Component {
     this.props.setInputs(inputsToServer)
     e.preventDefault()
   }
+  submitToWatson(e) {
+    e.preventDefault()
+    console.log("Fired")
+    this.props.postSystemWatson("billtrigger")
+    // Fire the function in the duck
+  }
   render(){
     console.log('bill info rendered')
     var {billingpoc,
@@ -86,6 +96,8 @@ width: 600,
   return(
   <main className="input-tile">
     <Paper style={pstyle} zDepth={1}>
+      <div className="brain-icon-container"><button onClick={this.submitToWatson.bind(this)}> <img src={ brainIcon } className="brain-icon"/> </button> </div>
+      {/* <button onClick={this.submitToWatson.bind(this)}>Provide Info</button> */}
     <div >
       <div className="input-header-title">Billing Information</div>
       <div className="input-description">This is for Goldsage Billing Contact Info and payment processing</div>
@@ -146,4 +158,4 @@ function mapStateToProps(state) {
   return {inputReturnValues: state.inputDuck.inputReturnValues}
 }
 
-export default connect(mapStateToProps, {setInputs, getInputs})(BillInfo);
+export default connect(mapStateToProps, {setInputs, getInputs, postSystemWatson})(BillInfo);

@@ -5,6 +5,12 @@ import "./Client.scss";
 import {login} from '../../ducks/loginDuck'
 import {logout} from '../../ducks/loginDuck'
 import NavBarTop from '../../components/Nav/index'
+import WatsonChat from '../../components/WatsonChat/index'
+import BillInfo from '../../components/BillInfo/index'
+import BizInfo from '../../components/BizInfo/index'
+import Social from '../../components/Social/index'
+import WebPages from '../../components/WebPages/index'
+import Design from '../../components/Design/index'
 
 import StatusBar from '../../components/StatusBar/index';
 
@@ -18,9 +24,13 @@ export function Client(props) {
 
         <NavBarTop/>
 
-
+        <WatsonChat/>
         <InputTile/>
-
+        <BillInfo/>
+        <BizInfo/>
+        <Social/>
+        <WebPages/>
+        <Design/>
 
         <StatusBar/>
 
