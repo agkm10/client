@@ -1,3 +1,4 @@
+
 //LIBRARIES
 import _ from 'lodash';
 //EXPORTED FUNCTIONS
@@ -6,14 +7,16 @@ import { reset } from 'redux-form';
 
 const GET_MESSAGES = "GET_MESSAGES",
     SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS',
-    SEND_MESSAGE_PENDING = 'SEND_MESSAGE_PENDING';
+    SEND_MESSAGE_PENDING = 'SEND_MESSAGE_PENDING',
+    POST_SYSTEM_MESSAGE = 'POST_SYSTEM_MESSAGE';
 
 const initialState = {
     userID: '',
     messages:[{}],
     loadingmessages:true,
     submittingmessage:false,
-    count_messages:[0]
+    count_messages:[0],
+    watsonMessage: null
 }
 
 export default function messageDuck( state = initialState, action ) {
@@ -49,6 +52,10 @@ export default function messageDuck( state = initialState, action ) {
                 submittingmessage:false,
                 messages:newMessages
             })
+        case POST_SYSTEM_MESSAGE:
+			      return Object.assign( {}, state,  {
+                watsonMessage: action.message
+            })                   
         default:
             return state;
     }
@@ -80,4 +87,17 @@ export function getChat( userId ) {
     return dispatch => {
         chatRead( userId )
     }
+}
+
+export function postSystemWatson(message) {
+	return {
+		type: POST_SYSTEM_MESSAGE,
+		message
+	}
+}
+export function clearSystemWatson() {
+	return {
+		type: POST_SYSTEM_MESSAGE,
+		message: ""
+	}
 }

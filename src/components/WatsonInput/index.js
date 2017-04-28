@@ -1,41 +1,62 @@
 import React, {Component} from "react";
-import "./WatsonChat.css";
+import "./WatsonInput.css"
 import IconButton from 'material-ui/IconButton';
 import {red500, cyan500, grey50} from 'material-ui/styles/colors';
-// import Send from 'material-ui/svg-icons/content/send';
-
 import FontIcon from 'material-ui/FontIcon';
 
+export default class WatsonInput extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { chatInput: '' };
 
-
-export default class WatsonChat extends Component {
-  constructor(){
-    super();
-    this.state = {
+    // React ES6 does not bind 'this' to event handlers by default
+    this.submitHandler = this.submitHandler.bind(this);
+    this.textChangeHandler = this.textChangeHandler.bind(this);
 }
+  submitHandler(event) {
+
+  // Stop the form from refreshing the page on submit
+  event.preventDefault();
+
+  // Clear the input box
+  this.setState({ chatInput: '' });
+
+  // Call the onSend callback with the chatInput message
+  this.props.onSend(this.state.chatInput);
+}
+
+textChangeHandler(event)  {
+  this.setState({ chatInput: event.target.value });
 }
 
 render(){
 
-  return(
-  <main className="chat-container">
-    <div className="chat-messages-container">
 
-    </div>
-      <form className="chat-send-input-container">
-     <input className="chat-input-text" type="text" />
+return(
 
-      <button className="chat-input-submit btn" type="submit" >
-     <FontIcon
-       className="material-icons"
-       style={{fontSize: 16}}
-       color={grey50}
-       hoverColor={cyan500} >send</FontIcon> </button>
-      </form>
+  <form className="chat-send-input-container" onSubmit={this.submitHandler}>
+    <input 
+      className="chat-input-text" type="text"
+      onChange={this.textChangeHandler}
+      value={this.state.chatInput}
+    />
 
-  </main>
-  )
+  <button className="chat-input-submit" type="submit" >
+    <FontIcon
+      className="material-icons"
+      style={{fontSize: 25}}
+      color={cyan500}
+      hoverColor={cyan500}>
+      send
+    </FontIcon>
+    </button>
+  </form>
 
-  }
+
+
+)
+
+
+}
 
 }
