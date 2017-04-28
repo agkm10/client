@@ -1,6 +1,6 @@
 import axiosLibrary from 'axios'
 const axios = axiosLibrary.create({withCredentials: true})
-  import Dropbox from 'dropbox'
+import Dropbox from 'dropbox'
 
   const UPLOAD_REQUEST = "UPLOAD_REQUEST",
     UPLOAD_SUCCESS = "UPLOAD_SUCCESS",
@@ -86,7 +86,6 @@ const axios = axiosLibrary.create({withCredentials: true})
         });
       }).catch(err => {
         if(err) {
-        console.log(err)
         dispatch(UploadFailure(err.response.data))
       }
       });
@@ -110,7 +109,6 @@ const axios = axiosLibrary.create({withCredentials: true})
         });
       }).catch(err => {
         if(err) {
-        console.log(err)
         dispatch(UploadFailure(err.response.data))
       }
       });

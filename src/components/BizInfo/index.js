@@ -67,7 +67,6 @@ class BizInfo extends Component {
   }
 
   render() {
-    // console.log('biz info rendered')
 
     var {businessname, businessadd, businesscity, businessstate, businessemail} = this.state;
 

@@ -2,7 +2,7 @@ import { getMessages, updateMessages } from './ducks/messageDuck';
 import { socketConnected } from './ducks/authDuck'
 
 import io from 'socket.io-client';
-export const socket = io( 'http://localhost:3001' );
+export const socket = io( 'http://localhost:3002' );
 
 export default function ( dispatch, getState ) {
     socket.on( 'socketid', data =>{

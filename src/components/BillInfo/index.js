@@ -81,7 +81,6 @@ class BillInfo extends Component {
   }
 
   render() {
-    // console.log('bill info rendered')
     var {
       billingpoc,
       billingphonenumber,

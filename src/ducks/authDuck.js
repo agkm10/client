@@ -1,6 +1,6 @@
 import axiosLibrary from 'axios';
 const axios = axiosLibrary.create( { withCredentials: true } );
-import { authenticate,fetchMessages } from './socketDuck';
+import { authenticate } from './socketDuck';
 
 //Action Definitions
     const AUTH_REQUEST = "AUTH_REQUEST",
@@ -91,14 +91,7 @@ import { authenticate,fetchMessages } from './socketDuck';
         return { type:CHECK_AUTH_FAILURE }
     }
 
-    function getMessages( messages ) {
-        return {
-            type: GET_MESSAGES,
-            messages
-        }
-    }
-
-    function logAdminOut() {
+    function logClientOut() {
         return { type:LOGOUT }
     }
 
@@ -107,11 +100,12 @@ import { authenticate,fetchMessages } from './socketDuck';
         dispatch( authSuccess( response ) );
     }
 
-    function socketConnected( data ) {
+//Export Functions
+
+    export function socketConnected( data ) {
         return { type: SOCKET_CONNECTED, payload: data }
     }
 
-//Export Functions
     export function checkUserAuth() {
         return ( dispatch ) =>{
             if( localStorage.getItem( 'token' ) ){
@@ -140,6 +134,6 @@ import { authenticate,fetchMessages } from './socketDuck';
         axios.get( BASE_API_URL + '/logout' )
         .then(( response ) => {
             localStorage.removeItem( 'token' );
-            dispatch( logAdminOut() )
+            dispatch( logClientOut() )
         });
     }

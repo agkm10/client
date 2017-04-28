@@ -58,7 +58,6 @@ class Design extends Component {
   }
 
   render() {
-    // console.log('design rendered')
     var {designwho, designaction, designurl} = this.state;
 
     const iconStyles = {

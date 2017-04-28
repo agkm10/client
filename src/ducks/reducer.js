@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { reducer } from 'react-redux-sweetalert';
 import clientDuck from './clientDuck';
-import socketDuck from './socketDuck';
 import messageDuck from './messageDuck';
 import inputDuck from './inputDuck';
 import uploadDuck from './uploadDuck';
@@ -9,11 +9,11 @@ import authDuck from './authDuck';
 
 
 export default combineReducers({
-    clientDuck,
-    socketDuck,
+    authDuck,
     messageDuck,
+    clientDuck,
     inputDuck,
     uploadDuck,
-    authDuck,
-    form:formReducer
+    form:formReducer,
+    sweetalert: reducer
 })

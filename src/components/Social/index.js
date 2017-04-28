@@ -71,7 +71,6 @@ class SocialInputs extends Component {
   }
 
   render() {
-    // console.log('social rendered')
       var {
         socialfacebook,
         socialinstagram,
