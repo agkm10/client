@@ -1,90 +1,113 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NavBarTop from '../../components/Nav/index'
 import { withRouter } from 'react-router-dom';
-import { initiateRoomState } from '../../ducks/messageDuck'
-
+import { Field, reduxForm } from 'redux-form';
+//COMPONENTS
+import NavBarTop from '../../components/Nav/index'
+//LIBRARIES
+import moment from 'moment';
+import TextField from 'material-ui/TextField'
+import FlatButton from 'material-ui/FlatButton'
+//EXPORTED FUNCTIONS
+import { getChat, sendMessage } from '../../ducks/messageDuck'
+//CSS
 import "./RoomsContainer.css"
 
+const renderTextField = ( { input, label, meta: { touched, error }, ...custom } ) => (
+   <TextField
+      hintText={ label }
+      errorText={ touched && error }
+      { ...input }
+      { ...custom }
+   />
+)
+
 class RoomsContainer extends Component {
-    constructor() {
-        super()
+   constructor() {
+      super()
 
-        this.state = {
+      this.state = {
+         message:''
+      }
 
-        }
-
-    //  this.handleOnChange = this.handleOnChange.bind(this)
-    //  this.handleOnSubmit = this.handleOnSubmit.bind(this)
-    //  this._handleMessageEvent = this._handleMessageEvent.bind(this)
-    //  this._handleFileUpload = this._handleFileUpload.bind(this)
+      this.handleSubmit = this.handleSubmit.bind( this )
    }
 
-  componentWillMount() {
-      this._init()
-  }
+   handleSubmit( e ) {
+      e.preventDefault();
+      this.props.sendMessage(
+         this.props.messages[0].chat_id,
+         this.props.user.id,
+         this.state.message
+      )
+   }
 
-  componentDidMount(){
-    // console.log(this.props)
-    // this._handleFileUpload()
-    // this._handleMessageEvent()
-  }
+   handleChange( field, e ) {
+      this.setState( { [ field ]: e.target.value } )
+   }
 
-  componentWillReceiveProps(nextProps){
-    console.log('room props', nextProps)
-  }
+   componentDidMount() {
+      this.props.getChat(
+         this.props.user.id
+      )
+   }
 
-  handleOnChange(ev) {
-    this.setState({ input: ev.target.value})
-  }
+   render() {
+      const { pristine, messages } = this.props
 
-  // handleOnSubmit(ev) {
-  //
-  //   ev.preventDefault()
-  //   socket.emit('chat message', {message: this.state.input, room: this.props.room.title, user: this.props.user})
-  //   this.setState({ input: '' })
-  // }
-  //
-  // _handleMessageEvent(){
-  //   socket.on('chat message', (inboundMessage) => {
-  //      this.props.createMessage({room: this.props.room, newMessage: {user: JSON.parse(inboundMessage).user, message: JSON.parse(inboundMessage).message}})
-  //    })
-  // }
+      const messageBox = messages.map( ( message, index ) => {
+         if( message.type==='user' ){
+            return(
+               <div className="message-container user" key={ index }>
+                  <h1>{message.message}</h1>
+                  <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2>
+               </div>
+            )
+         }
+         return(
+            <div className="message-container" key={ index }>
+               <h1>{ message.message }</h1>
+               <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2>
+            </div>
+         )
+      })
 
-  _init(){
-        // console.log(this.props)
-      this.props.initiateRoomState()
-      console.log(this.props)
-    //   socket.emit('ENTERROOMNAMEHERE', {room: this.props.room.title})
-    //     this.setState({connected: true})
-    // }
-  }
-
-  renderRoomTiles
-  render() {
-
-    return (
-      <div>
-        <NavBarTop/>
-        <aside>
-
-        </aside>
-        <h3>HELLO ROOM CONTAINER</h3>
-      </div>
-
-
-    )
-  }
-
+      return (
+         <div>
+            <NavBarTop/>
+            <div className="room-container">
+               <div className="chat-container">
+                  { messageBox }
+                  <form onSubmit={ this.handleSubmit } className="message-input">
+                     <Field
+                        label="Type a Message"
+                        name="message"
+                        component={ renderTextField }
+                        onChange={ this.handleChange.bind( this, 'message' ) }
+                     />
+                     <FlatButton
+                        type="submit"
+                        label="Send"
+                        disabled={ !this.state.message || pristine }
+                        primary={ true }
+                     />
+                  </form>
+               </div>
+            </div>
+         </div>
+      )
+   }
 }
 
-function mapStateToProps(state) {
-    console.log('room', state)
-    return {
-        messages:state.messageDuck.messages,
-        user: state.loginDuck.user,
-        socket: state.loginDuck.socket
-    }
+const form = reduxForm({
+   form: 'messageForm'
+})
+
+const mapStateToProps = ( state ) => {
+   return {
+       messages:state.messageDuck.messages,
+       user: state.authDuck.user
+   }
 }
 
-export default withRouter(connect( mapStateToProps, {initiateRoomState})( RoomsContainer ))
+export default withRouter( connect( mapStateToProps, { getChat, sendMessage } )( form( RoomsContainer ) ) )

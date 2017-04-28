@@ -1,70 +1,76 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+//EXPORTED FUNCTIONS
+import { getComps } from '../../ducks/clientDuck';
+import { getFiles } from '../../ducks/uploadDuck';
+import { getInputs } from '../../ducks/inputDuck';
+//COMPONENTS
+import SocialInputs from '../Social/index';
+import LogoUpload from '../Logo/index';
+import BizInfo from '../BizInfo/index';
+import BillInfo from '../BillInfo/index';
+import WebPages from '../WebPages/index';
+import Design from '../Design/index';
+//CSS
 import "./inputTile.css";
-import {getComps} from '../../ducks/clientDuck'
-import {connect} from "react-redux";
-import SocialInputs from '../Social/index'
-import TestComp1 from '../TestComp1/index'
-import TestComp2 from '../TestComp2/index'
-import LogoUpload from '../Logo/index'
-import BizInfo from '../BizInfo/index'
-import BillInfo from '../BillInfo/index'
-import WebPages from '../WebPages/index'
-import Design from '../Design/index'
+
 
 class InputTile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      componentTypes: [
-        {component: < TestComp1 />, name: 'TestComp1'},
-        {component: < TestComp2 />, name: 'TestComp2'},
-        {component: < SocialInputs />, name: 'SocialInputs'},
-        {component: < LogoUpload />, name: 'LogoUpload'},
-        {component: < BizInfo />, name: 'BizInfo'},
-        {component: < BillInfo />, name: 'BillInfo'},
-        {component: < WebPages />, name: 'WebPages'},
-        {component: < Design />, name: 'Design'}
-      ]
+    constructor() {
+        super()
+
+        this.state = {
+            componentTypes: [
+                { component: < SocialInputs />, name: 'SocialInputs' },
+                { component: < LogoUpload />, name: 'LogoUpload' },
+                { component: < BizInfo />, name: 'BizInfo' },
+                { component: < BillInfo />, name: 'BillInfo' },
+                { component: < WebPages />, name: 'WebPages' },
+                { component: < Design />, name: 'Design' }
+            ]
+        }
     }
 
-  }
-  componentDidMount() {
-      this.props.getComps()
+    componentDidMount() {
+        this.props.getComps()
+        this.props.getInputs()
+        this.props.getFiles()
+    }
 
-  }
-  componentWillReceiveProps(nextProps) {
+    render() {
+        const { varComponentTypes } = this.props;
+        const { componentTypes } = this.state;
 
-  }
-  render() {
-    // console.log(this.props)
-    const {varComponentTypes} = this.props;
-    const {componentTypes} = this.state
-    // console.log('varcomptypes', varComponentTypes)
-    const componentMap = componentTypes.filter((type, index) => {
-      var check = false
-      for (var comp in varComponentTypes.data) {
-        if ((varComponentTypes.data[comp].compName === type.name)) {
-          check = true;
-          type.key = varComponentTypes.data[comp].id
-        }
-      }
-      return (check)
-    })
-    const componentDisplay = componentMap.map(x => {
-      return <div key={x.key}>{x.component}</div>
-    })
-    return (
-      <main className="input-tile-landing">
+        const componentMap = componentTypes.filter( ( type, index ) => {
+            let check = false;
+            for ( let comp in varComponentTypes.data ) {
+                if ( varComponentTypes.data[comp].compName === type.name ) {
+                    check = true;
+                    type.key = varComponentTypes.data[comp].id
+                }
+            }
+            return ( check )
+        })
 
-      {componentDisplay}
+        const componentDisplay = componentMap.map( x => {
+            return (
+                <div key={ x.key }>{ x.component }</div>
+            )
+        })
 
-
-      </main>
-    );
-  }
+        return (
+            <main className="input-tile-landing">
+                { componentDisplay }
+            </main>
+        );
+    }
 }
-function mapStateToProps(state) {
-  return {varComponentTypes: state.clientDuck.varComponentTypes,
-          checkcheck: state.clientDuck.checkcheck};
+
+const mapStateToProps = state => {
+    return {
+        varComponentTypes: state.clientDuck.varComponentTypes,
+        checkcheck: state.clientDuck.checkcheck
+    }
 }
-export default connect(mapStateToProps, {getComps})(InputTile);
+
+export default connect( mapStateToProps, { getComps, getFiles, getInputs } )( InputTile );

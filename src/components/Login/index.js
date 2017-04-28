@@ -1,13 +1,12 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import {login} from '../../ducks/authDuck';
-import "./Login.scss";
+import "./Login.css";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { withRouter, Redirect } from 'react-router-dom';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Field, reduxForm } from 'redux-form';
-// import { store } from '../../store'
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
 				<TextField
@@ -49,12 +48,10 @@ class LoginForm extends Component {
         } =  this.props
 
         const {
-						// email,
             password
         } = this.state
 
         if( isAuthenticated ){
-					console.log('redirecting')
             return(
                 <Redirect to='/client'/>
             )

@@ -1,6 +1,6 @@
 import axiosLibrary from 'axios'
 const axios = axiosLibrary.create({withCredentials: true})
-  import Dropbox from 'dropbox'
+import Dropbox from 'dropbox'
 
   const UPLOAD_REQUEST = "UPLOAD_REQUEST",
     UPLOAD_SUCCESS = "UPLOAD_SUCCESS",
@@ -66,12 +66,6 @@ const axios = axiosLibrary.create({withCredentials: true})
   function getDropboxSuccess(response) {
     return {type: DROPBOX_SUCCESS, payload: response}
   }
-  function returnUploads(dispatch, response) {
-    dispatch(UploadSuccess(response));
-  }
-  function returnDropbox(dispatch, response) {
-    dispatch(getDropboxSuccess(response))
-  }
 
   export function uploadFile() {
     return (dispatch) => {
@@ -86,13 +80,14 @@ const axios = axiosLibrary.create({withCredentials: true})
           contents: file
         }).then(function(response) {
           alert(file.name + ' uploaded successfully!')
-          response.filName = file.name;
-          returnUploads(dispatch, response)
+          dispatch(UploadSuccess(response))
+          dispatch(getFiles());
         }).catch(function(error) {
         });
       }).catch(err => {
-        console.log(err)
+        if(err) {
         dispatch(UploadFailure(err.response.data))
+      }
       });
     }
   }
@@ -105,12 +100,17 @@ const axios = axiosLibrary.create({withCredentials: true})
         dbx.filesListFolder({
           path: '/' + response.data.company
         }).then(function(response) {
-          returnDropbox(dispatch, response.entries)
+          if(response.entries) {
+          dispatch(getDropboxSuccess(response.entries))
+        } else {
+          dispatch(getDropboxSuccess([]))
+        }
         }).catch(function(error) {
         });
       }).catch(err => {
-        console.log(err)
+        if(err) {
         dispatch(UploadFailure(err.response.data))
+      }
       });
     }
   }

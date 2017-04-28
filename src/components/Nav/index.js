@@ -1,120 +1,96 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+//EXPORTED FUNCTIONS
+import { logout } from '../../ducks/authDuck';
+//MATERIAL UI
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
 import Badge from 'material-ui/Badge';
+import FlatButton from 'material-ui/FlatButton';
 import NotificationsIcon from 'material-ui/svg-icons/communication/message';
-// import Profile from 'material-ui/svg-icons/action/account-circle';
 import WatsonIcon from 'material-ui/svg-icons/action/fingerprint';
+import { grey50 } from 'material-ui/styles/colors';
+//CSS
 import goldsageLogo from "../../assets/logoforgroupapp.svg";
-import {grey50} from 'material-ui/styles/colors';
-import {logout} from '../../ducks/authDuck'
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import "./nav.css"
-
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import "./nav.css";
 
 class NavBarTop extends Component {
-  constructor() {
-    super();
+    constructor() {
+        super()
 
-    this.handleClick = this.handleClick.bind(this)
-  }
+        this.handleClick = this.handleClick.bind( this )
+    }
 
-  handleClick(e) {
-    this.props.logout()
-    e.preventDefault();
-  }
-  navBarLogout() {
-    alert('onTouchTap triggered on the title component');
-  }
-  render() {
-    // const links = (
-    //   <div>
-    //     <IconButton tooltip="Watson chat">
-    //       <WatsonIcon color={grey50}/>
-    //     </IconButton>
-    //
-    //     <Badge badgeContent={10} secondary={true} badgeStyle={{
-    //       top: 12,
-    //       right: 12
-    //     }}>
-    //
-    //       <Link to="/messages">
-    //         <IconButton tooltip="message">
-    //           <NotificationsIcon color={grey50}/>
-    //         </IconButton>
-    //       </Link>
-    //     </Badge>
-    //
-    //     <Link to="/" onClick={this.handleClick}>
-    //       <IconButton tooltip="Logout">
-    //         <Profile color={grey50}/>
-    //       </IconButton>
-    //     </Link>
-    //   </div>
-    // )
+    handleClick( e ) {
+        this.props.logout()
+        e.preventDefault()
+    }
 
-    // const styles = {
-    //   title: {
-    //     cursor: 'pointer'
-    //   }
-    // };
-    // const muiTheme = getMuiTheme({
-    //   palette: {},
-    //   Toolbar: {
-    //     height: 60,
-    //     color: "#7EC9B3"
-    //   },
-    //
-    //   badge: {
-    //     fontWeight: 300
-    //   }
-    // });
+    componentDidMount() {
+        const badge = ReactDOM.findDOMNode( this.refs.badge )
+        badge.style.paddingRight = '12px'
+    }
 
-    return (
-        <Toolbar style={{backgroundColor: '#0E4341', height: 80}}>
-        <ToolbarGroup firstChild={true}>
-          <Link to="/client">
-          <img alt="javascript logo" className="nav-goldsage-logo" src={ goldsageLogo }/>
-          </Link>
-        </ToolbarGroup>
-        <ToolbarGroup>
+    render() {
+        const {
+            count_messages
+        }
+        = this.props
 
-            <IconButton tooltip="Watson chat">
-              <WatsonIcon color={grey50}/>
-            </IconButton>
+        const badgeCount = () =>{
+            return count_messages[0]
+        }
 
-            <Badge badgeContent={10} secondary={true} badgeStyle={{
-              top: 12,
-              right: 12
-            }}>
+        const badgeStyle = ()=>{
+            return ( count_messages[0] )
+            ?{ top: 12, right: 6 }
+            :{ top: 24, right: 24,display:'none' }
+        }
 
-              <Link to="/messages">
-                <IconButton tooltip="message">
-                  <NotificationsIcon color={grey50}/>
-                </IconButton>
-              </Link>
-            </Badge>
+        return (
+            <Toolbar style={ { backgroundColor: '#0E4341', height: 80 } }>
+                <ToolbarGroup firstChild={ true }>
+                    <Link to="/client">
+                        <img alt="javascript logo" className="nav-goldsage-logo" src={ goldsageLogo }/>
+                    </Link>
+                </ToolbarGroup>
+                <ToolbarGroup>
+                    <IconButton tooltip="Watson chat">
+                        <WatsonIcon color={ grey50 }/>
+                    </IconButton>
 
-            <Link to="/" onClick={this.handleClick}>
-              <FlatButton
-                label="LOGOUT"
-                primary={true}
-                labelStyle={{grey50}}
-                style={{color: grey50}}
-              />
-            </Link>
-        </ToolbarGroup>
-      </Toolbar>
-    )
-  }
-};
+                    <Badge
+                        ref="badge"
+                        badgeContent={ badgeCount() }
+                        secondary={ true }
+                        badgeStyle={ badgeStyle() }>
+                        <Link to="/messages">
+                            <IconButton tooltip="message">
+                                <NotificationsIcon color={ grey50 }/>
+                            </IconButton>
+                        </Link>
+                    </Badge>
 
-
-// export default NavBarTop;
-function mapStateToProps(state) {
-  return {isAuthenticated: state.authDuck.isAuthenticated};
+                    <Link to="/" onClick={ this.handleClick }>
+                        <FlatButton
+                            label="LOGOUT"
+                            primary={ true }
+                            labelStyle={ { grey50 } }
+                            style={ { color: grey50 } }
+                        />
+                    </Link>
+                </ToolbarGroup>
+            </Toolbar>
+        )
+    }
 }
 
-export default connect(mapStateToProps, {logout})(NavBarTop);
+const mapStateToProps = state => {
+    return {
+        count_messages: state.messageDuck.count_messages
+    }
+}
+
+export default connect( mapStateToProps, { logout } )( NavBarTop )
