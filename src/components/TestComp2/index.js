@@ -56,7 +56,6 @@ class TestComp2 extends Component {
     var newDynamicText = this.state.dynamicText.slice(0)
     newDynamicText[field[0]][field[1]] = e.target.value
     this.setState({dynamicText: newDynamicText})
-    console.log('handle dynamic change',this.state.dynamicText)
   }
   componentDidMount() {
     // this.props.getInputs();
@@ -102,7 +101,6 @@ class TestComp2 extends Component {
     if (completeCheck) {
       componentCompleted.completed = true;
     }
-    console.log('componentCompleted', componentCompleted)
     this.props.setInputs(inputsToServer)
     this.props.updateComps(componentCompleted)
   }

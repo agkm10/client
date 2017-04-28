@@ -47,7 +47,6 @@ class LogoUpload extends Component {
     };
 
   render(){
-    // console.log('logo rendered')
     var {dropboxFiles}=this.props
 
     const dropboxFileUploads = dropboxFiles.map(file => {

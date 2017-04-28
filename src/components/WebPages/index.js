@@ -38,7 +38,6 @@ class WebPages extends Component {
     var newDynamicText = this.state.dynamicText.slice(0)
     newDynamicText[field[0]][field[1]] = e.target.value
     this.setState({dynamicText: newDynamicText})
-    console.log('dynamicchange', this.state.dynamicText)
   }
   removeDynamicText(field) {
     var arrayvar2 = this.state.dynamicText.slice(0)
@@ -56,7 +55,6 @@ class WebPages extends Component {
     const inputsToServer = {
       websites: JSON.stringify(this.state.dynamicText)
     }
-    console.log('inputs to server', inputsToServer)
     // const inputsToServer = {
     //   firstname: this.state.firstname,
     //   lastname: this.state.lastname,
@@ -72,7 +70,6 @@ class WebPages extends Component {
     if (completeCheck) {
       componentCompleted.completed = true;
     }
-    console.log('componentCompleted', componentCompleted)
     this.props.setInputs(inputsToServer)
     this.props.updateComps(componentCompleted)
     e.preventDefault()
@@ -80,7 +77,6 @@ class WebPages extends Component {
 
 
   render() {
-    // console.log('websites rendered')
     const iconStyles = {
       marginRight: 10,
       fontSize: 14
