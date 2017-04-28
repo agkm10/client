@@ -12,7 +12,8 @@ export default class WatsonMessages extends Component {
   }
   componentDidUpdate() {
   // There is a new message in the state, scroll to bottom of list
-  const objDiv = document.getElementById('messageList');
+  const objDiv = document.querySelector('.chat-messages-container');
+  console.log(objDiv)
   objDiv.scrollTop = objDiv.scrollHeight;
 }
 

@@ -82,3 +82,15 @@ color: $green;
 font-weight: 300;
 
 }
+.brain-icon-container{
+display:flex;
+flex-flow:row-nowrap;
+justify-content: flex-end;
+}
+.brain-icon-container button{
+  background-color: transparent;
+  border:none;
+}
+.brain-icon {
+height: 35px;
+}
