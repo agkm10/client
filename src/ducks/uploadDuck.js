@@ -1,12 +1,13 @@
-import axiosLibrary from 'axios'
-const axios = axiosLibrary.create({withCredentials: true})
-import Dropbox from 'dropbox'
+import axiosLibrary from 'axios';
+import { APISERVERPATH } from '../config.json';
+import Dropbox from 'dropbox';
+const axios = axiosLibrary.create( { withCredentials: true } )
 
   const UPLOAD_REQUEST = "UPLOAD_REQUEST",
     UPLOAD_SUCCESS = "UPLOAD_SUCCESS",
     UPLOAD_FAILURE = "UPLOAD_FAILURE",
     DROPBOX_SUCCESS = "DROPBOX_SUCCESS",
-    BASE_URL = "http://localhost:3002/api";
+    BASE_URL = APISERVERPATH;
 
   const initialState = {
     uploadReturnValues: {},

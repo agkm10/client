@@ -1,11 +1,13 @@
-import axiosLibrary from 'axios'
-const axios = axiosLibrary.create( { withCredentials: true } )
+import axiosLibrary from 'axios';
+import { APISERVERPATH } from '../config.json';
+const axios = axiosLibrary.create( { withCredentials: true } );
+
 
 const COMP_REQUEST = "COMP_REQUEST",
     COMP_SUCCESS = "COMP_SUCCESS",
     COMP_FAILURE = "COMP_FAILURE",
     COMP_COMPLETED = "COMP_COMPLETED",
-    BASE_URL = "http://localhost:3002/api";
+    BASE_URL = APISERVERPATH;
 
 const initialState = {
     varComponentTypes: [],

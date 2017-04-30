@@ -1,6 +1,8 @@
 import axiosLibrary from 'axios';
 const axios = axiosLibrary.create( { withCredentials: true } );
 import { authenticate } from './socketDuck';
+import { APISERVERPATH } from '../config.json'
+
 
 //Action Definitions
     const AUTH_REQUEST = "AUTH_REQUEST",
@@ -10,8 +12,7 @@ import { authenticate } from './socketDuck';
         CHECK_AUTH_FAILURE = "CHECK_AUTH_FAILURE",
         LOGOUT = "LOGOUT",
         SOCKET_CONNECTED = "SOCKET_CONNECTED",
-        BASE_URL = "http://localhost:3002",
-        BASE_API_URL = BASE_URL + "/api";
+        BASE_API_URL = APISERVERPATH;
 
 //Initial State
     const initialState = {

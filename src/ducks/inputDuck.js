@@ -1,10 +1,11 @@
-import axiosLibrary from 'axios'
-const axios = axiosLibrary.create( { withCredentials: true } )
+import axiosLibrary from 'axios';
+import { APISERVERPATH } from '../config.json';
+const axios = axiosLibrary.create( { withCredentials: true } );
 
 const INPUT_REQUEST = "INPUT_REQUEST",
     INPUT_SUCCESS = "INPUT_SUCCESS",
     INPUT_FAILURE = "INPUT_FAILURE",
-    BASE_URL = "http://localhost:3002/api";
+    BASE_URL = APISERVERPATH;
 
 const initialState = {
     inputReturnValues: {},
