@@ -8,8 +8,9 @@ import WatsonInput from "../WatsonInput/index"
 import WatsonMessages from "../WatsonMessages/index"
 import axiosLibrary from 'axios';
 const axios = axiosLibrary.create({ withCredentials: true });
-import {clearSystemWatson} from '../../ducks/messageDuck'
-
+import {clearSystemWatson} from '../../ducks/messageDuck';
+import { APISERVERPATH } from '../../config.json'
+const BASE_URL = APISERVERPATH;
 
 class WatsonChat extends Component {
   constructor(){
@@ -22,16 +23,13 @@ class WatsonChat extends Component {
 }
 
 componentWillReceiveProps(nextProps) {
-  console.log(nextProps)
   if (nextProps.systemWatsonMessage) {
     this.systemHandlerBilling(nextProps.systemWatsonMessage)
   }
 }
 
 systemHandlerBilling(message){
-console.log(message)
-  axios.post("http://localhost:3002/api/watson/message", {message}).then(response => {
-    console.log("response from watson", response);
+  axios.post( BASE_URL + "/watson/message", {message}).then(response => {
     // Here's our chance to programatically respond to Watson
     // if (response.data.includes("Great, let's go to")) {
        // Possibly change location, do something else and then post our own message to watson
@@ -69,8 +67,7 @@ sendHandler(message) {
 
   // Emit the message to the server
   // TODO Add database call below
-  axios.post("http://localhost:3002/api/watson/message", messageObject).then(response => {
-    console.log(response);
+  axios.post( BASE_URL + "/watson/message", messageObject).then(response => {
     // Here's our chance to programatically respond to Watson
     // if (response.data.includes("Great, let's go to")) {
        // Possibly change location, do something else and then post our own message to watson
@@ -85,11 +82,10 @@ sendHandler(message) {
 }
 
 addMessage(message){
-console.log(message);
   // Append the message to the component state
   const messages = this.state.messages;
-  messages.push(message);
-  this.setState({ messages },()=>{console.log(this.state.messages)});
+  messages.push( message );
+  this.setState( { messages } );
 
   // To avoid mutating the state:
   // const messages = this.state.messages

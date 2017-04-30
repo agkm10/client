@@ -9,7 +9,7 @@ import moment from 'moment';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 //EXPORTED FUNCTIONS
-import { getChat, sendMessage } from '../../ducks/messageDuck'
+import { getChat, sendMessage, comploaded, compunloaded } from '../../ducks/messageDuck'
 //CSS
 import "./RoomsContainer.css"
 
@@ -36,7 +36,7 @@ class RoomsContainer extends Component {
    handleSubmit( e ) {
       e.preventDefault();
       this.props.sendMessage(
-         this.props.messages[0].chat_id,
+         this.props.messages[ 0 ].chat_id,
          this.props.user.id,
          this.state.message
       )
@@ -50,6 +50,11 @@ class RoomsContainer extends Component {
       this.props.getChat(
          this.props.user.id
       )
+      this.props.comploaded()
+   }
+
+   componentWillUnmount() {
+      this.props.compunloaded()
    }
 
    render() {
@@ -59,7 +64,7 @@ class RoomsContainer extends Component {
          if( message.type==='user' ){
             return(
                <div className="message-container user" key={ index }>
-                  <h1>{message.message}</h1>
+                  <h1>{ message.message }</h1>
                   <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2>
                </div>
             )
@@ -76,7 +81,7 @@ class RoomsContainer extends Component {
          <div>
             <NavBarTop/>
             <div className="room-container">
-               <div className="chat-container">
+               <div className="mchat-container">
                   { messageBox }
                   <form onSubmit={ this.handleSubmit } className="message-input">
                      <Field
@@ -110,4 +115,4 @@ const mapStateToProps = ( state ) => {
    }
 }
 
-export default withRouter( connect( mapStateToProps, { getChat, sendMessage } )( form( RoomsContainer ) ) )
+export default withRouter( connect( mapStateToProps, { getChat, sendMessage, comploaded, compunloaded } )( form( RoomsContainer ) ) )
