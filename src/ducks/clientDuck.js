@@ -4,10 +4,10 @@ const axios = axiosLibrary.create( { withCredentials: true } );
 
 
 const COMP_REQUEST = "COMP_REQUEST",
-    COMP_SUCCESS = "COMP_SUCCESS",
-    COMP_FAILURE = "COMP_FAILURE",
-    COMP_COMPLETED = "COMP_COMPLETED",
-    BASE_URL = APISERVERPATH;
+      COMP_SUCCESS = "COMP_SUCCESS",
+      COMP_FAILURE = "COMP_FAILURE",
+      COMP_COMPLETED = "COMP_COMPLETED",
+      BASE_URL = APISERVERPATH;
 
 const initialState = {
     varComponentTypes: [],
@@ -73,14 +73,15 @@ function compComplete( response ) {
 export function getComps() {
     return dispatch => {
         dispatch( compRequest() )
-        axios.get( BASE_URL + '/comps' ).then( response => {
+        axios.get( BASE_URL + '/comps' )
+        .then( response => {
             dispatch( compSuccess( response ) )
         })
         .catch( err => {
             if ( err.response ) {
                 dispatch( compFailure( err.response.data ) )
             }
-        });
+        })
     }
 }
 
@@ -93,6 +94,6 @@ export function updateComps( data ) {
         } )
         .catch( err => {
             dispatch( compFailure( err.response.data ) )
-        } );
+        } )
     }
 }

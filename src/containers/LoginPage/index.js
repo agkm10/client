@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../ducks/authDuck';
+//COMPONENTS
 import Login from '../../components/Login/index';
 
-function LoginPage( ) {
+export default function LoginPage( ) {
     return (
         <div>
             <Login></Login>
         </div>
-    );
+    )
 }
-
-export default connect(state => state, { login })( LoginPage );

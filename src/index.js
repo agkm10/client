@@ -14,11 +14,11 @@ if( localStorage.getItem( 'token' ) ){
 
 ReactDOM.render(
     <BrowserRouter>
-          <Provider store={ store }>
-              <MuiThemeProvider>
-                  <Route path="/" component={ App } />
-              </MuiThemeProvider>
-          </Provider>
-      </BrowserRouter>,
+        <Provider store={ store }>
+            <MuiThemeProvider>
+                <Route path="/" component={ App } />
+            </MuiThemeProvider>
+        </Provider>
+    </BrowserRouter>,
     document.getElementById( 'root' )
 );

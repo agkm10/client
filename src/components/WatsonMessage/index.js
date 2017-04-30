@@ -4,10 +4,6 @@ import robotIcon from '../../assets/roboticon.svg';
 import './WatsonMessage.css'
 
 export default class WatsonMessage extends Component {
-    constructor(){
-        super()
-        this.state = {}
-    }
 
     render() {
         if(this.props.username === "user"){

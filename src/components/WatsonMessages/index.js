@@ -1,42 +1,37 @@
-import React, {Component} from "react";
-import "./WatsonMessages.css"
-import WatsonMessage from "../WatsonMessage/index"
-
-
-
+import React, { Component } from 'react';
+//COMPONENTS
+import WatsonMessage from '../WatsonMessage/index'
+//CSS
+import './WatsonMessages.css'
 
 export default class WatsonMessages extends Component {
-  constructor(){
-    super();
-    this.state= {}
-  }
-  componentDidUpdate() {
-  // There is a new message in the state, scroll to bottom of list
-  const objDiv = document.querySelector('.chat-messages-container');
-  console.log(objDiv)
-  objDiv.scrollTop = objDiv.scrollHeight;
-}
 
+    componentDidUpdate() {
+        // There is a new message in the state, scroll to bottom of list
+        const objDiv = document.querySelector( '.chat-messages-container' )
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
 
-  render() {
-    // Loop through all the messages in the state and create a Message component
-    const messages = this.props.messages.map((message, i) => {
+    render() {
+        // Loop through all the messages in the state and create a Message component
+        const messages = this.props.messages.map( ( message, i ) => {
+            return (
+                <WatsonMessage
+                    key={ i }
+                    username={ message.username }
+                    message={ message.message }
+                />
+            )
+        })
+
         return (
-          <WatsonMessage
-            key={i}
-            username={message.username}
-            message={message.message}/>
-        );
-      });
-
-    return (
-      <div className='messages' id='messageList'>
-        { messages }
-      </div>
-    );
-  }
-
+            <div className='messages' id='messageList'>
+                { messages }
+            </div>
+        )
+    }
 }
+
 WatsonMessages.defaultProps = {
-  messages: []
+    messages: []
 };

@@ -3,71 +3,70 @@ const axios = axiosLibrary.create( { withCredentials: true } );
 import { authenticate } from './socketDuck';
 import { APISERVERPATH } from '../config.json'
 
-
 //Action Definitions
-    const AUTH_REQUEST = "AUTH_REQUEST",
-        AUTH_SUCCESS = "AUTH_SUCCESS",
-        AUTH_FAILURE = "AUTH_FAILURE",
-        CHECK_AUTH_SUCCESS = "CHECK_AUTH_SUCCESS",
-        CHECK_AUTH_FAILURE = "CHECK_AUTH_FAILURE",
-        LOGOUT = "LOGOUT",
-        SOCKET_CONNECTED = "SOCKET_CONNECTED",
-        BASE_API_URL = APISERVERPATH;
+const AUTH_REQUEST = "AUTH_REQUEST",
+      AUTH_SUCCESS = "AUTH_SUCCESS",
+      AUTH_FAILURE = "AUTH_FAILURE",
+      CHECK_AUTH_SUCCESS = "CHECK_AUTH_SUCCESS",
+      CHECK_AUTH_FAILURE = "CHECK_AUTH_FAILURE",
+      LOGOUT = "LOGOUT",
+      SOCKET_CONNECTED = "SOCKET_CONNECTED",
+      BASE_API_URL = APISERVERPATH;
 
 //Initial State
-    const initialState = {
-        user: {},
-        isAuthenticated: null,
-        loadingUser: false,
-        loginError: null,
-        socket: null
-    };
+const initialState = {
+    user: {},
+    isAuthenticated: null,
+    loadingUser: false,
+    loginError: null,
+    socket: null
+}
 
 //User Duck
-    export default function authDuck( state = initialState, action ) {
-        switch ( action.type ) {
-            case AUTH_REQUEST:
-                return Object.assign( {}, state, {
-                    loadingUser: true,
-                    isAuthenticated: false,
-                    loginError: null
-                })
-            case AUTH_SUCCESS:
-                return Object.assign( {}, state, {
-                    user: action.payload,
-                    loadingUser: false,
-                    loginError: null,
-                    isAuthenticated: true
-                })
-            case AUTH_FAILURE:
-                return Object.assign( {}, state, {
-                    loadingUser: false,
-                    loginError: action.error,
-                    isAuthenticated:false
-                })
-            case CHECK_AUTH_SUCCESS:
-                return Object.assign( {}, state, {
-                    isAuthenticated:true
-                })
-            case CHECK_AUTH_FAILURE:
-                return Object.assign( {}, state, {
-                    isAuthenticated:false
-                })
-            case LOGOUT:
-                return Object.assign( {}, state, {
-                    isAuthenticated: false,
-                    socket: null,
-                    user: {},
-                    loadingUser: false
-                })
-            case SOCKET_CONNECTED:
-                return Object.assign( {}, state, {
-                    socket: action.payload
-                })
-            default:
-                return state;
-        }
+export default function authDuck( state = initialState, action ) {
+    switch ( action.type ) {
+        case AUTH_REQUEST:
+            return Object.assign( {}, state, {
+                loadingUser: true,
+                isAuthenticated: false,
+                loginError: null
+            })
+        case AUTH_SUCCESS:
+            return Object.assign( {}, state, {
+                user: action.payload,
+                loadingUser: false,
+                loginError: null,
+                isAuthenticated: true
+            })
+        case AUTH_FAILURE:
+            return Object.assign( {}, state, {
+                loadingUser: false,
+                loginError: action.error,
+                isAuthenticated:false
+            })
+        case CHECK_AUTH_SUCCESS:
+            return Object.assign( {}, state, {
+                isAuthenticated:true
+            })
+        case CHECK_AUTH_FAILURE:
+            return Object.assign( {}, state, {
+                isAuthenticated:false
+            })
+        case LOGOUT:
+            return Object.assign( {}, state, {
+                isAuthenticated: false,
+                socket: null,
+                user: {},
+                loadingUser: false
+            })
+        case SOCKET_CONNECTED:
+            return Object.assign( {}, state, {
+                socket: action.payload
+            })
+        default:
+            return state;
     }
+}
 
 //Dispatch Functions
 function authSuccess( response ) {
