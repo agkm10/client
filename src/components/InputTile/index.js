@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 //EXPORTED FUNCTIONS
 import { getComps } from '../../ducks/clientDuck';
 import { getFiles } from '../../ducks/uploadDuck';
@@ -12,7 +12,7 @@ import BillInfo from '../BillInfo/index';
 import WebPages from '../WebPages/index';
 import Design from '../Design/index';
 //CSS
-import "./inputTile.css";
+import './inputTile.css';
 
 
 class InputTile extends Component {
@@ -62,7 +62,7 @@ class InputTile extends Component {
             <main className="input-tile-landing">
                 { componentDisplay }
             </main>
-        );
+        )
     }
 }
 
@@ -73,4 +73,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect( mapStateToProps, { getComps, getFiles, getInputs } )( InputTile );
+export default connect( mapStateToProps, { getComps, getFiles, getInputs } )( InputTile )

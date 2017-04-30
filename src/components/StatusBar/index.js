@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { getComps } from '../../ducks/clientDuck';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 //COMPONENTS
 import SocialInputs from '../Social/index';
 import LogoUpload from '../Logo/index';
@@ -12,14 +12,15 @@ import Design from '../Design/index';
 import IconButton from 'material-ui/IconButton';
 import IconComplete from 'material-ui/svg-icons/navigation/check';
 import IconNotComplete from 'material-ui/svg-icons/content/clear';
-import { grey50  } from 'material-ui/styles/colors';
+import { grey50 } from 'material-ui/styles/colors';
 import LinearProgress from 'material-ui/LinearProgress';
 //CSS
-import "./statusbar.css";
+import './statusbar.css';
 
 class StatusBar extends Component {
     constructor() {
         super()
+
         this.state = {
             componentTypes: [
                 { component: < SocialInputs />, name: 'SocialInputs' },
@@ -42,12 +43,12 @@ class StatusBar extends Component {
             let check = false
             let check2 = false;
             for ( let comp in varComponentTypes.data ) {
-                if ( varComponentTypes.data[comp].compName === type.name ) {
+                if ( varComponentTypes.data[ comp ].compName === type.name ) {
                     check = true;
                     compCount1 += 1;
-                    type.statusName = varComponentTypes.data[comp].statusName
-                    type.key = varComponentTypes.data[comp].id
-                    if ( varComponentTypes.data[comp].completed === true ) {
+                    type.statusName = varComponentTypes.data[ comp ].statusName
+                    type.key = varComponentTypes.data[ comp ].id
+                    if ( varComponentTypes.data[ comp ].completed === true ) {
                         compCount += 1;
                         check2 = true;
                     }

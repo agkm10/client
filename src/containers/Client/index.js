@@ -1,17 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
 //COMPONENTS
 import InputTile from '../../components/InputTile/index';
 import NavBarTop from '../../components/Nav/index';
 import StatusBar from '../../components/StatusBar/index';
-import WatsonChat from '../../components/WatsonChat/index'
+import WatsonChat from '../../components/WatsonChat/index';
 //CSS
-import "./Client.css";
+import './Client.css';
 
-export function Client( props ) {
-
+export default function Client( props ) {
     return (
-
         <main className="landing">
             <div>
                 <WatsonChat/>
@@ -20,11 +17,5 @@ export function Client( props ) {
                 <StatusBar/>
             </div>
         </main>
-    );
+    )
 }
-
-function mapStateToProps( state ) {
-  return { isAuth: state.authDuck.isAuthenticated }
-}
-
-export default connect( mapStateToProps, {} )( Client );

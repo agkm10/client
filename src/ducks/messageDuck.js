@@ -5,11 +5,11 @@ import { postMessage, chatRead } from './socketDuck';
 import { reset } from 'redux-form';
 
 const GET_MESSAGES = "GET_MESSAGES",
-    SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS',
-    SEND_MESSAGE_PENDING = 'SEND_MESSAGE_PENDING',
-    POST_SYSTEM_MESSAGE = 'POST_SYSTEM_MESSAGE',
-    MESSAGE_COMP_LOADED = 'MESSAGE_COMP_LOADED',
-    MESSAGE_COMP_NOTLOADED = 'MESSAGE_COMP_NOTLOADED';
+      SEND_MESSAGE_SUCCESS = 'SEND_MESSAGE_SUCCESS',
+      SEND_MESSAGE_PENDING = 'SEND_MESSAGE_PENDING',
+      POST_SYSTEM_MESSAGE = 'POST_SYSTEM_MESSAGE',
+      MESSAGE_COMP_LOADED = 'MESSAGE_COMP_LOADED',
+      MESSAGE_COMP_NOTLOADED = 'MESSAGE_COMP_NOTLOADED';
 
 const initialState = {
     messages:[{}],
@@ -100,7 +100,7 @@ export function sendMessage( chatid, userid, message ){
 
 export function updateMessages( data ) {
     return dispatch => {
-        dispatch( { type:SEND_MESSAGE_SUCCESS,payload:data } )
+        dispatch( { type:SEND_MESSAGE_SUCCESS, payload:data } )
     }
 }
 
