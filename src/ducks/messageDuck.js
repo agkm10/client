@@ -91,7 +91,7 @@ export function getMessages( messages ) {
 export function sendMessage( chatid, userid, message ){
     let messagebody = { chatid, userid, message }
     postMessage( messagebody )
-    return dispatch=>{
+    return dispatch => {
         dispatch( { type: SEND_MESSAGE_PENDING } )
         dispatch( reset( 'messageForm' ) )
     }
@@ -99,7 +99,7 @@ export function sendMessage( chatid, userid, message ){
 
 
 export function updateMessages( data ) {
-    return dispatch=>{
+    return dispatch => {
         dispatch( { type:SEND_MESSAGE_SUCCESS,payload:data } )
     }
 }
