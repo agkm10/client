@@ -18,7 +18,6 @@ import { APISERVERPATH } from '../config.json'
     const initialState = {
         user: {},
         isAuthenticated: null,
-        errorAuthenticating: false,
         loadingUser: false,
         loginError: null,
         socket: null
@@ -31,18 +30,17 @@ import { APISERVERPATH } from '../config.json'
                 return Object.assign( {}, state, {
                     loadingUser: true,
                     isAuthenticated: false,
-                    errorAuthenticating: false
+                    loginError: null
                 })
             case AUTH_SUCCESS:
                 return Object.assign( {}, state, {
                     user: action.payload,
                     loadingUser: false,
-                    errorAuthenticating: false,
+                    loginError: null,
                     isAuthenticated: true
                 })
             case AUTH_FAILURE:
                 return Object.assign( {}, state, {
-                    errorAuthenticating: true,
                     loadingUser: false,
                     loginError: action.error,
                     isAuthenticated:false
@@ -72,69 +70,70 @@ import { APISERVERPATH } from '../config.json'
     }
 
 //Dispatch Functions
-    function authSuccess( response ) {
-        return { type: AUTH_SUCCESS, payload: response.data }
-    }
+function authSuccess( response ) {
+    return { type: AUTH_SUCCESS, payload: response.data }
+}
 
-    function authRequest( ) {
-        return { type: AUTH_REQUEST }
-    }
+function authRequest() {
+    return { type: AUTH_REQUEST }
+}
 
-    function authFailure( err ) {
-        return { type: AUTH_FAILURE, error: err }
-    }
+function authFailure( err ) {
+    return { type: AUTH_FAILURE, error: err }
+}
 
-    function checkAuthSuccess(){
-        return { type:CHECK_AUTH_SUCCESS }
-    }
+function checkAuthSuccess(){
+    return { type: CHECK_AUTH_SUCCESS }
+}
 
-    function checkAuthFailure(){
-        return { type:CHECK_AUTH_FAILURE }
-    }
+function checkAuthFailure(){
+    return { type: CHECK_AUTH_FAILURE }
+}
 
-    function logClientOut() {
-        return { type:LOGOUT }
-    }
+function logClientOut() {
+    return { type: LOGOUT }
+}
 
-    function setCurrentUser( dispatch, response ) {
-        localStorage.setItem('token', JSON.stringify( response.data ));
-        dispatch( authSuccess( response ) );
-    }
+function setCurrentUser( dispatch, response ) {
+    localStorage.setItem( 'token', JSON.stringify( response.data ) )
+    dispatch( authSuccess( response ) )
+}
 
 //Export Functions
 
-    export function socketConnected( data ) {
-        return { type: SOCKET_CONNECTED, payload: data }
-    }
+export function socketConnected( data ) {
+    return { type: SOCKET_CONNECTED, payload: data }
+}
 
-    export function checkUserAuth() {
-        return ( dispatch ) =>{
-            if( localStorage.getItem( 'token' ) ){
-                dispatch( checkAuthSuccess() )
-            }
-            else { dispatch( checkAuthFailure() ) }
+export function checkUserAuth() {
+    return dispatch => {
+        if( localStorage.getItem( 'token' ) ){
+            dispatch( checkAuthSuccess() )
         }
+        else { dispatch( checkAuthFailure() ) }
     }
+}
 
-    export function login( data ) {
-        return ( dispatch ) => {
-            dispatch( authRequest() )
-            axios.post( BASE_API_URL + '/login', data )
-            .then( response => {
-                setCurrentUser( dispatch, response );
-                authenticate( response.data.id )
-            })
-            .catch( err => {
-                dispatch( authFailure( err ) );
-            });
-        }
+export function login( data ) {
+    return dispatch => {
+        dispatch( authRequest() )
+        axios.post( BASE_API_URL + '/login', data )
+        .then( response => {
+            setCurrentUser( dispatch, response )
+            authenticate( response.data.id )
+        })
+        .catch( err => {
+            dispatch( authFailure( err ) )
+        })
     }
+}
 
-    export function logout() {
-        return ( dispatch ) =>
+export function logout() {
+    return dispatch => {
         axios.get( BASE_API_URL + '/logout' )
-        .then(( response ) => {
-            localStorage.removeItem( 'token' );
+        .then( response => {
+            localStorage.removeItem( 'token' )
             dispatch( logClientOut() )
-        });
+        })
     }
+}

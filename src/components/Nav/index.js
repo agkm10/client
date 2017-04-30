@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 //EXPORTED FUNCTIONS
 import { logout } from '../../ducks/authDuck';
 //MATERIAL UI
@@ -13,8 +13,8 @@ import NotificationsIcon from 'material-ui/svg-icons/communication/message';
 import WatsonIcon from 'material-ui/svg-icons/action/fingerprint';
 import { grey50 } from 'material-ui/styles/colors';
 //CSS
-import goldsageLogo from "../../assets/logoforgroupapp.svg";
-import "./nav.css";
+import goldsageLogo from '../../assets/logoforgroupapp.svg';
+import './nav.css';
 
 class NavBarTop extends Component {
     constructor() {
@@ -60,7 +60,6 @@ class NavBarTop extends Component {
                     <IconButton tooltip="Watson chat">
                         <WatsonIcon color={ grey50 }/>
                     </IconButton>
-
                     <Badge
                         ref="badge"
                         badgeContent={ badgeCount() }
@@ -72,7 +71,6 @@ class NavBarTop extends Component {
                             </IconButton>
                         </Link>
                     </Badge>
-
                     <Link to="/" onClick={ this.handleClick }>
                         <FlatButton
                             label="LOGOUT"
