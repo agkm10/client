@@ -63,25 +63,32 @@ class RoomsContainer extends Component {
         const messageBox = messages.map( ( message, index ) => {
             if( message.type==='user' ){
                 return(
-                    <div className="message-container user" key={ index }>
-                        <h1>{ message.message }</h1>
-                        <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2>
+                  <div className="message-container user2" key={ index }>
+                    <h3>User - { moment( message.timestamp ).format( "MMM Do YY" ) }</h3>
+                    <div className="user-message">
+                    <h1>{ message.message }</h1>
+                    {/* <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2> */}
+                    </div>
                     </div>
                 )
             }
             return(
-                <div className="message-container" key={ index }>
-                    <h1>{ message.message }</h1>
-                    <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2>
+                <div className="message-container admin" key={ index }>
+                  <h3>Admin - { moment( message.timestamp ).format( "MMM Do YY" ) }</h3>
+                  <div className="admin-message">
+                  <h1>{ message.message }</h1>
+                  {/* <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2> */}
+                  </div>
                 </div>
             )
         })
 
         return (
-            <div>
+            <div className="message-container-main">
                 <NavBarTop/>
                 <div className="room-container">
                     <div className="mchat-container">
+                      <h2>Messages</h2>
                         { messageBox }
                         <form onSubmit={ this.handleSubmit } className="message-input">
                             <Field
