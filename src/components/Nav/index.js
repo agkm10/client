@@ -57,9 +57,6 @@ class NavBarTop extends Component {
                     </Link>
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <IconButton tooltip="Watson chat">
-                        <WatsonIcon color={ grey50 }/>
-                    </IconButton>
                     <Badge
                         ref="badge"
                         badgeContent={ badgeCount() }

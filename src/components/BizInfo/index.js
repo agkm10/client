@@ -8,10 +8,13 @@ import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 //EXPORTED FUNCTIONS
+import { postSystemWatson } from '../../ducks/messageDuck';
 import { setInputs, getInputs } from '../../ducks/inputDuck';
 import { updateComps } from '../../ducks/clientDuck';
 //CSS
 import './BizInfo.css';
+import brainIcon from '../../assets/logoquestion.svg';
+
 
 class BizInfo extends Component {
     constructor() {
@@ -69,6 +72,10 @@ class BizInfo extends Component {
         this.props.updateComps( componentCompleted )
         e.preventDefault()
     }
+    submitToWatson( e ) {
+      e.preventDefault()
+      this.props.postSystemWatson( "businessinfotrigger" )
+    }
 
     render() {
 
@@ -104,6 +111,11 @@ class BizInfo extends Component {
 
             <main className="input-tile">
                 <Paper style={ pstyle } zDepth={ 1 }>
+                  <div className="brain-icon-container">
+                      <button onClick={ this.submitToWatson.bind( this ) }>
+                          <img src={ brainIcon } className="brain-icon"/>
+                      </button>
+                  </div>
                     <div >
                         <div className="input-header-title">General Business Info</div>
                         <div className="input-description">Provide your business information for website.</div>
@@ -206,4 +218,4 @@ const mapStateToProps= state => {
     return { inputReturnValues: state.inputDuck.inputReturnValues }
 }
 
-export default connect( mapStateToProps, { setInputs, getInputs, updateComps } )( BizInfo )
+export default connect( mapStateToProps, { setInputs, getInputs, postSystemWatson, updateComps } )( BizInfo )

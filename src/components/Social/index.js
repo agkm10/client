@@ -10,8 +10,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 //EXPORTED FUNCTIONS
 import { setInputs, getInputs } from '../../ducks/inputDuck';
 import { updateComps } from '../../ducks/clientDuck';
+import { postSystemWatson } from '../../ducks/messageDuck';
+
 //CSS
 import './Social.css';
+import brainIcon from '../../assets/logoquestion.svg';
+
 
 class SocialInputs extends Component {
     constructor() {
@@ -72,6 +76,11 @@ class SocialInputs extends Component {
         e.preventDefault()
     }
 
+    submitToWatson( e ) {
+      e.preventDefault()
+      this.props.postSystemWatson( "socialmediatrigger" )
+    }
+
     render() {
         const {
             socialfacebook,
@@ -106,6 +115,11 @@ class SocialInputs extends Component {
         return (
             <main className="input-tile">
                 <Paper style={ pstyle } zDepth={ 1 }>
+                  <div className="brain-icon-container">
+                      <button onClick={ this.submitToWatson.bind( this ) }>
+                          <img src={ brainIcon } className="brain-icon"/>
+                      </button>
+                  </div>
                     <div>
                     <div className="input-header-title">Social Media Links</div>
                         <div className="input-description">Find your social network links and copy and paste them below.</div>
@@ -246,4 +260,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect( mapStateToProps, { setInputs, getInputs, updateComps } )( SocialInputs )
+export default connect( mapStateToProps, { setInputs, getInputs, updateComps, postSystemWatson } )( SocialInputs )
