@@ -11,7 +11,10 @@ import Paper from 'material-ui/Paper';
 //EXPORTED FUNCTIONS
 import { setInputs, getInputs } from '../../ducks/inputDuck'
 import { updateComps } from '../../ducks/clientDuck'
+import { postSystemWatson } from '../../ducks/messageDuck';
+
 //CSS
+import brainIcon from '../../assets/logoquestion.svg';
 import './WebPages.css'
 
 class WebPages extends Component {
@@ -72,6 +75,11 @@ class WebPages extends Component {
         this.props.setInputs( inputsToServer )
         this.props.updateComps( componentCompleted )
         e.preventDefault()
+    }
+
+    submitToWatson( e ) {
+      e.preventDefault()
+      this.props.postSystemWatson( "websitepagestrigger" )
     }
 
     render() {
@@ -154,6 +162,11 @@ class WebPages extends Component {
         return (
             <main className="input-tile">
                 <Paper style={ pstyle } zDepth={ 1 }>
+                  <div className="brain-icon-container">
+                      <button onClick={ this.submitToWatson.bind( this ) }>
+                          <img src={ brainIcon } className="brain-icon"/>
+                      </button>
+                  </div>
                     <div>
                         <div className="input-header-title">Website Pages Content</div>
                         <div className="input-description">
@@ -192,10 +205,10 @@ class WebPages extends Component {
     }
 }
 
-const mapStateToProps = state => { 
+const mapStateToProps = state => {
     return {
         dynamicText: state.inputDuck.dynamicText
     }
 }
 
-export default connect( mapStateToProps, { setInputs, getInputs, updateComps } )( WebPages )
+export default connect( mapStateToProps, { setInputs, getInputs, updateComps, postSystemWatson } )( WebPages )

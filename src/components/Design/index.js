@@ -8,10 +8,13 @@ import SaveButton from 'material-ui/svg-icons/file/cloud-upload';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 //EXPORTED FUNCTIONS
+import { postSystemWatson } from '../../ducks/messageDuck';
 import { setInputs, getInputs } from '../../ducks/inputDuck';
 import { updateComps } from '../../ducks/clientDuck';
 //CSS
 import './Design.css';
+import brainIcon from '../../assets/logoquestion.svg';
+
 
 class Design extends Component {
     constructor() {
@@ -61,6 +64,11 @@ class Design extends Component {
         e.preventDefault()
     }
 
+    submitToWatson( e ) {
+      e.preventDefault()
+      this.props.postSystemWatson( "designtrigger" )
+    }
+
     render() {
         const {
             designwho,
@@ -91,6 +99,11 @@ class Design extends Component {
         return (
             <main className="input-tile">
                 <Paper style={ pstyle } zDepth={ 1 }>
+                  <div className="brain-icon-container">
+                      <button onClick={ this.submitToWatson.bind( this ) }>
+                          <img src={ brainIcon } className="brain-icon"/>
+                      </button>
+                  </div>
                     <div>
                         <div className="input-header-title">Design</div>
                         <div className="input-description">These questions are designed to help us with our design and build process.</div>
@@ -166,4 +179,4 @@ const mapStateToProps = state => {
   return { inputReturnValues: state.inputDuck.inputReturnValues }
 }
 
-export default connect( mapStateToProps, { setInputs, getInputs, updateComps } )( Design )
+export default connect( mapStateToProps, { setInputs, getInputs, updateComps, postSystemWatson } )( Design )
