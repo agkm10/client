@@ -44,6 +44,10 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .landing {
   padding-bottom: 60px;
 }
@@ -54,17 +58,6 @@ input:-webkit-autofill {
   margin-bottom: 60px;
 }
 
-.login-container {
-
-  width: 400px;
-  margin: auto;
-  padding-top: 180px;
-}
-
-.login-form-inputs {
-  text-align: center;
-  background-color: white;
-}
 #delete-page {
   font-weight: 300;
   font-size: 15px;
@@ -86,13 +79,6 @@ padding-top: 10px;
 
 }
 
-.login-landing {
-  background: url("../../assets/loginbackground.png") center center no-repeat;
-  background-size: cover;
-  background-color: #0E4341;
-  min-height: 100vh;
-
-}
 .input-tile {
   width: 50%;
   margin: auto;

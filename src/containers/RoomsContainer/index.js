@@ -13,7 +13,10 @@ import { Row, Col } from 'react-flexbox-grid';
 import { getChat, sendMessage, comploaded, compunloaded } from '../../ducks/messageDuck'
 //CSS
 import "./RoomsContainer.css"
-import userImg from '../../assets/avatarchatuser.png'
+//TODO Remove these
+import userImg1 from '../../assets/user1.png';
+import userImg2 from '../../assets/user2.png';
+import userImg3 from '../../assets/user3.png';
 import adminImg from '../../assets/goldsageAvatar.png'
 
 const renderTextField = ( { input, label, meta: { touched, error }, ...custom } ) => (
@@ -56,7 +59,7 @@ class RoomsContainer extends Component {
         this.props.comploaded()
     }
     componentDidUpdate() {
-        const objDiv = document.querySelector( '.mchat-container' )
+        const objDiv = document.querySelector( '.messages-main' )
         objDiv.scrollTop = objDiv.scrollHeight;
     }
 
@@ -68,6 +71,14 @@ class RoomsContainer extends Component {
         const { pristine, messages } = this.props
 
         const messageBox = messages.map( ( message, index, arr ) => {
+            let avatarUsr = ''
+            if (message.user_id===1){
+                avatarUsr=userImg1
+            }
+            else if(message.user_id===2){
+                avatarUsr=userImg2
+            }
+            else avatarUsr = userImg3
             if( message.type === 'user' ){
                 return(
                     <div className="message-outside" key={ index }>
@@ -80,12 +91,12 @@ class RoomsContainer extends Component {
                                     &&
                                     arr[ index-1 ].type !== message.type
                                     &&
-                                    <img src={ userImg } alt="User Avatar"/>
+                                    <img src={ avatarUsr } alt="User Avatar"/>
                                 }
                                 {
                                     index === 0
                                     &&
-                                    <img src={ userImg } alt="User Avatar"/>
+                                    <img src={ avatarUsr } alt="User Avatar"/>
                                 }
                             </Col>
                             <Col xs={ 11 } className="message-name">
@@ -183,25 +194,29 @@ class RoomsContainer extends Component {
         return (
             <div className="message-container-main">
                 <NavBarTop/>
-                <div className="room-container">
-                    <div className="mchat-container">
-                      <h2>Messages</h2>
+                <div className="messages-main">
+                    <h2>Messages</h2>
                         { messageBox }
-                        <form onSubmit={ this.handleSubmit } className="message-input">
-                            <Field
-                                label="Type a Message"
-                                name="message"
-                                component={ renderTextField }
-                                onChange={ this.handleChange.bind( this, 'message' ) }
-                            />
-                            <FlatButton
-                                type="submit"
-                                label="Send"
-                                disabled={ !this.state.message || pristine }
-                                primary={ true }
-                            />
-                        </form>
-                    </div>
+                    <Row className="message-input-container">
+                        <Col xs={ 12 }>
+                            <form onSubmit={ this.handleSubmit } className="message-input">
+                                <Field
+                                    label="Type a Message"
+                                    name="message"
+                                    component={ renderTextField }
+                                    onChange={ this.handleChange.bind( this, 'message' ) }
+                                />
+                                <div className="message-btn-container">
+                                    <FlatButton
+                                        type="submit"
+                                        label="Send"
+                                        disabled={ !this.state.message || pristine }
+                                        primary={ true }
+                                    />
+                                </div>
+                            </form>
+                        </Col>
+                    </Row>
                 </div>
             </div>
         )

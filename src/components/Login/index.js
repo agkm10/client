@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import {  Field, reduxForm  } from 'redux-form';
-//MATERIAL UI
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import CircularProgress from 'material-ui/CircularProgress';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 //EXPORTED FUNCTIONS
 import { login } from '../../ducks/authDuck';
+//MATERIAL UI
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import CircularProgress from 'material-ui/CircularProgress';
 //CSS
 import './Login.css';
 
@@ -53,6 +54,17 @@ class LoginForm extends Component {
             password
         } = this.state
 
+        const loginInput = {
+            fontSize: 20,
+        }
+        const pwdDiv = {
+            marginBottom: 30,
+            marginTop:-30
+        }
+        const inputDiv = {
+            marginBottom: 30
+        }
+
         if( isAuthenticated ){
             return(
                 <Redirect to='/client'/>
@@ -61,31 +73,48 @@ class LoginForm extends Component {
 
         return (
             <form onSubmit={ this.handleSubmit.bind( this ) } className="login-landing" >
-                <div className="login-container">
-                    <div className="login-form-inputs">
-                        <Field
-                            label="Username"
-                            component={ renderTextField }
-                            name="email"
-                            onChange={ this.handleChange.bind( this, 'email' ) }
-                        />
-                        <br/>
-                        <Field
-                            label="Password"
-                            type="password"
-                            name="password"
-                            component={ renderTextField }
-                            onChange={ this.handleChange.bind( this, 'password' ) }
-                        />
-                        <br/>
-                        <FlatButton
-                            type="submit"
-                            label="LOGIN"
-                            disabled={ loadingUser || pristine || !password }
-                            primary={ true }
-                        />
+                <Grid fluid>
+                    <div className="login-container">
+                        <Row>
+                            <Col type="row" sm={ 12 } md={ 3 } className="login-form-inputs">
+                                <Row>
+                                    <Col sm={ 12 }></Col>
+                                </Row>
+                                <Field
+                                    label="Username"
+                                    component={ renderTextField }
+                                    fullWidth={ true }
+                                    name="email"
+                                    style={ inputDiv }
+                                    inputStyle={ loginInput }
+                                    onChange={ this.handleChange.bind( this, 'email' ) }
+                                />
+                                <br/>
+                                <Field
+                                    label="Password"
+                                    type="password"
+                                    name="password"
+                                    fullWidth={ true }
+                                    component={ renderTextField }
+                                    className="login-style"
+                                    style={ pwdDiv }
+                                    inputStyle={ loginInput }
+                                    onChange={ this.handleChange.bind( this, 'password' ) }
+                                />
+                                <br/>
+                                <Row>
+                                    <RaisedButton
+                                        type="submit"
+                                        label="LOGIN"
+                                        fullWidth={ true }
+                                        disabled={ loadingUser || pristine || !password }
+                                        primary={ true }
+                                    />
+                                </Row>
+                            </Col>
+                        </Row>
                     </div>
-                </div>
+                </Grid>
                 { ( loadingUser )?<CircularProgress size={ 80 } thickness={ 5 } />:null }
                 { ( loginError )? <div>Username/Password is Incorrect</div>:null }
             </form>

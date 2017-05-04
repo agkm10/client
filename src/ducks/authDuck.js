@@ -46,7 +46,9 @@ export default function authDuck( state = initialState, action ) {
             })
         case CHECK_AUTH_SUCCESS:
             return Object.assign( {}, state, {
-                isAuthenticated:true
+                isAuthenticated:true,
+                user:action.payload,
+                loadingUser: false
             })
         case CHECK_AUTH_FAILURE:
             return Object.assign( {}, state, {
@@ -81,8 +83,8 @@ function authFailure( err ) {
     return { type: AUTH_FAILURE, error: err }
 }
 
-function checkAuthSuccess(){
-    return { type: CHECK_AUTH_SUCCESS }
+function checkAuthSuccess( data ){
+    return { type: CHECK_AUTH_SUCCESS, payload: data }
 }
 
 function checkAuthFailure(){
@@ -107,7 +109,9 @@ export function socketConnected( data ) {
 export function checkUserAuth() {
     return dispatch => {
         if( localStorage.getItem( 'token' ) ){
-            dispatch( checkAuthSuccess() )
+            let id = JSON.parse( localStorage.getItem( 'token' ) ).id
+            authenticate( id )
+            dispatch( checkAuthSuccess( JSON.parse( localStorage.getItem( 'token' ) ) ) )
         }
         else { dispatch( checkAuthFailure() ) }
     }
