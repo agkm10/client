@@ -50,13 +50,16 @@ class NavBarTop extends Component {
         }
 
         return (
-            <Toolbar style={ { backgroundColor: '#0E4341', height: 80 } }>
+            <Toolbar
+                style={ { backgroundColor: '#0E4341', height: 80 } }
+                className="nav-toolbar">
                 <ToolbarGroup firstChild={ true }>
                     <Link to="/client">
                         <img alt="javascript logo" className="nav-goldsage-logo" src={ goldsageLogo }/>
                     </Link>
                 </ToolbarGroup>
-                <ToolbarGroup>
+                <ToolbarGroup
+                    className="nav-second-group">
                     <Badge
                         ref="badge"
                         badgeContent={ badgeCount() }
