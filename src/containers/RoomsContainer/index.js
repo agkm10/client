@@ -8,10 +8,13 @@ import NavBarTop from '../../components/Nav/index'
 import moment from 'moment';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
+import { Row, Col } from 'react-flexbox-grid';
 //EXPORTED FUNCTIONS
 import { getChat, sendMessage, comploaded, compunloaded } from '../../ducks/messageDuck'
 //CSS
 import "./RoomsContainer.css"
+import userImg from '../../assets/avatarchatuser.png'
+import adminImg from '../../assets/goldsageAvatar.png'
 
 const renderTextField = ( { input, label, meta: { touched, error }, ...custom } ) => (
     <TextField
@@ -52,6 +55,10 @@ class RoomsContainer extends Component {
         )
         this.props.comploaded()
     }
+    componentDidUpdate() {
+        const objDiv = document.querySelector( '.mchat-container' )
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
 
     componentWillUnmount() {
         this.props.compunloaded()
@@ -60,25 +67,115 @@ class RoomsContainer extends Component {
     render() {
         const { pristine, messages } = this.props
 
-        const messageBox = messages.map( ( message, index ) => {
-            if( message.type==='user' ){
+        const messageBox = messages.map( ( message, index, arr ) => {
+            if( message.type === 'user' ){
                 return(
-                  <div className="message-container user2" key={ index }>
-                    <h3>User - { moment( message.timestamp ).format( "MMM Do YY" ) }</h3>
-                    <div className="user-message">
-                    <h1>{ message.message }</h1>
-                    {/* <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2> */}
-                    </div>
+                    <div className="message-outside" key={ index }>
+                        <Row top="xs" className="message-container">
+                            <Col xs={ 1 }>
+                                {
+                                    index > 0
+                                    &&
+                                    arr[ index-1 ].type
+                                    &&
+                                    arr[ index-1 ].type !== message.type
+                                    &&
+                                    <img src={ userImg } alt="User Avatar"/>
+                                }
+                                {
+                                    index === 0
+                                    &&
+                                    <img src={ userImg } alt="User Avatar"/>
+                                }
+                            </Col>
+                            <Col xs={ 11 } className="message-name">
+                                {
+                                    index > 0
+                                    &&
+                                    arr[ index-1 ].type
+                                    &&
+                                    arr[ index-1 ].type !== message.type
+                                    &&
+                                    message.firstname
+                                    + ' ' +
+                                    message.lastname
+                                }
+                                {
+                                    index === 0
+                                    &&
+                                    message.firstname
+                                    + ' ' +
+                                    message.lastname
+                                }
+                                <span className="message-time">
+                                    { moment (
+                                        message.timestamp
+                                    )
+                                    .format (
+                                        "h:mm A - MMM DD YYYY"
+                                    ) }
+                                </span>
+                                <Row className="message-text">
+                                    { message.message }
+                                </Row>
+                            </Col>
+                        </Row>
                     </div>
                 )
             }
-            return(
-                <div className="message-container admin" key={ index }>
-                  <h3>Admin - { moment( message.timestamp ).format( "MMM Do YY" ) }</h3>
-                  <div className="admin-message">
-                  <h1>{ message.message }</h1>
-                  {/* <h2>{ moment( message.timestamp ).format( "MMM Do YY" ) }</h2> */}
-                  </div>
+            return (
+                <div className="message-outside" key={ index }>
+                    <Row top="xs" className="message-container">
+                        <Col xs={ 1 } className="message-image">
+                            {
+                                index > 0
+                                &&
+                                arr[ index-1 ].type
+                                &&
+                                arr[ index-1 ].type !== message.type
+                                &&
+                                <img src={ adminImg } alt="Admin Avatar"/>
+                            }
+                            {
+                                index === 0
+                                &&
+                                <img src={ adminImg } alt="Admin Avatar"/>
+                            }
+                        </Col>
+                        <Col xs={ 11 } className="message-name">
+                            {
+                                index > 0
+                                &&
+                                arr[ index-1 ].type
+                                &&
+                                arr[ index-1 ].type !== message.type
+                                &&
+                                'Admin'
+                                // user.firstname
+                                // + ' ' +
+                                // user.lastname
+                            }
+                            {
+                                index === 0
+                                &&
+                                'Admin'
+                                // user.firstname
+                                // + ' ' +
+                                // user.lastname
+                            }
+                            <span className="message-time">
+                                { moment (
+                                    message.timestamp
+                                )
+                                .format (
+                                    "h:mm A - MMM DD YYYY"
+                                ) }
+                            </span>
+                            <Row className="message-text">
+                                { message.message }
+                            </Row>
+                        </Col>
+                    </Row>
                 </div>
             )
         })
